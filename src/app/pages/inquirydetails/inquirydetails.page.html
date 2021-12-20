@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <ion-grid style="padding: 5px 8px !important;" no-padding class="header padding-0">
+                <ion-row style="align-items: center;">
+                    <ion-col size="9.7">
+                        <div class="page_had">
+
+                            <ion-buttons (click)="tools.backPage()" no-padding>
+                                <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
+                            </ion-buttons>
+                            <ion-label class="page_title">My Inquiry Details</ion-label>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content style="background: #fff">
+    <ion-grid style="padding: 0px; margin: 0;">
+        <ion-row class="box-des">
+            <ion-col class="left_col"> 
+                <ion-label class="d-block title f-15">Inquiry No. : # {{InqNO}}</ion-label>
+                <ion-label class="content d-block">Inq Date : {{InqDate}}</ion-label>
+                <ion-label class="content d-block">Customer : {{Custname}}</ion-label>
+                <ion-label class="content d-block">Agent : {{Agentname}}</ion-label>
+            </ion-col>        
+            <ion-col class="right_col">
+                <div class="select_box">
+                    <ion-select okText="Ok" placeholder="Select Status" cancelText="Dismiss"
+                                (ionChange)="onChangeState($event.target.value)">
+                                <ion-select-option *ngFor="let item of StatusList">{{item.Status}}</ion-select-option>
+                            </ion-select>
+                </div>
+                <ion-button class="btn-red" (click)="accept()">Save</ion-button>
+            </ion-col>
+        </ion-row>
+
+
+        <ion-row class="products_list box-des" *ngFor="let inq of AdminInqDetails ;">
+            <ion-col class="prod_content left_col">
+                <ion-label class="d-block title f-15">{{inq.PartsName}} ( {{inq.PartsNo}} )</ion-label>
+                <ion-label class="content">{{inq.MachineName}}</ion-label>
+            </ion-col>
+            <ion-col class="prod_qty right_col">
+                    <ion-label>Qty : {{inq.Qty}}</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-card-content class="ion-no-padding empty-list-box" *ngIf="AdminInqDetails?.length == 0">
+        <ion-label class="empty-list">
+            No Data Available!
+        </ion-label>
+    </ion-card-content>
+</ion-content>

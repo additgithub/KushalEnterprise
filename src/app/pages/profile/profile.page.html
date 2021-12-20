@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <ion-grid style="padding: 5px 8px !important;" no-padding class="header padding-0">
+                <ion-row style="align-items: center;">
+                    <ion-col size="9.7">
+                        <div class="page_had">
+
+                            <ion-buttons (click)="tools.backPage()" no-padding>
+                                <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
+                            </ion-buttons>
+                            <ion-label class="page_title">My Profile</ion-label>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>   
+    <ion-grid class="p-0">
+        <ion-row class="p-0" class="pro_infobox">
+            <ion-col class="p-0" size="12">
+                <div class="pro_img">
+                    <ion-label>{{user.username.charAt(0).toUpperCase()}}</ion-label>
+                </div>
+            </ion-col>
+            <ion-col class="p-0" size="12">
+                <div class="pro_content">
+                    <ion-label>{{user.username}}</ion-label>
+                    <ion-label>{{user.email}}</ion-label>
+                </div>
+            </ion-col>
+        </ion-row>  
+    </ion-grid>
+    <ion-grid class="p-0">    
+        <ion-row class="forms_boxs">
+            <ion-col size="12">
+                <form [formGroup]="loginForm" (ngSubmit)="Saveprofile()" style="padding: 0 0px;">
+                    <div class="form-group">
+                        <ion-input type="text" placeholder="First Name" class="form-control" formControlName='fname'></ion-input>
+                    </div>
+                    <div class="form-group">
+                        <ion-input type="text" placeholder="Last Name" class="form-control" formControlName='lname'></ion-input>
+                    </div>
+                    <div class="form-group">
+                        <ion-input type="text" placeholder="Company Name"  class="form-control" formControlName='lname' (keypress)="onlyAlpha($event)"></ion-input>
+                    </div>
+                    <div class="form-group">
+                        <ion-input type="email" placeholder="Email" class="form-control" formControlName='email'></ion-input>
+                    </div>
+                    <div class="form-group">
+                        <ion-input type="tel" maxlength="10" placeholder="Mobile No" class="form-control" formControlName='mobile'></ion-input>
+                    </div>
+                    <div class="form-group">
+                         <ion-select class="form-control" okText="Ok" placeholder="Select Agent" cancelText="Dismiss" formControlName='agent' (ionChange)="onChangeState($event.target.value)">
+                             <ion-select-option *ngFor="let item of this.tools.CountryCodes" value="{{item.dial_code}}">{{item.flag}} ({{item.dial_code}}) {{item.name}}</ion-select-option>
+                        </ion-select>
+                    </div>
+                    <div class="buttion_box">
+                        <ion-button class="btn-red" type="submit">Save</ion-button>
+                    </div>                    
+                </form>
+            </ion-col>
+        </ion-row>             
+    </ion-grid>    
+</ion-content>

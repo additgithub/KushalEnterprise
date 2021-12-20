@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <ion-grid style="padding: 5px 8px !important;" no-padding class="header padding-0">
+                <ion-row style="align-items: center;">
+                    <ion-col size="9.7">
+                        <div class="page_had">
+
+                            <ion-buttons (click)="tools.backPage()" no-padding>
+                                <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
+                            </ion-buttons>
+                            <ion-label class="page_title">Add Agent</ion-label>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <div>
+        <form [formGroup]="loginForm"  style="padding: 0 0px;">
+
+            <ion-grid>
+
+                <ion-row class="mt-10">
+                    <ion-col>
+                        <ion-item class="box-des">
+                            <ion-input type="text" placeholder="First Name" style="text-transform: capitalize;"
+                                formControlName='fname' (keypress)="onlyAlpha($event)"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="mt-5">
+
+                    <ion-col>
+                        <ion-item class="box-des">
+                            <ion-input type="text" placeholder="Last Name" style="text-transform: capitalize;"
+                                formControlName='lname' (keypress)="onlyAlpha($event)"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="mt-5">
+                    <ion-col>
+                        <ion-item class="box-des">
+                            <ion-input type="email" placeholder="Email" style="text-transform: none !important;"
+                                formControlName='email'></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="mt-5">
+                    <ion-col>
+                        <ion-item class="box-des">
+                            <ion-input type="tel" maxlength="10" placeholder="Mobile No" formControlName='mobile'>
+                            </ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+
+
+            </ion-grid>
+        </form>
+    </div>
+
+</ion-content>
+
+<ion-row class="mt-10">
+    <ion-col>
+        <ion-button class="btn-red" (click)="addAgent()">Add Agent</ion-button>
+    </ion-col>
+</ion-row>

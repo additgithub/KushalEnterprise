@@ -1,0 +1,80 @@
+<ion-content>
+    <div class="main-content">
+        <form [formGroup]="loginForm" (ngSubmit)="register()" style="padding: 0 0px;">
+
+            <ion-row>
+                <ion-col>
+                    <ion-img class="img-logo" src="../../../assets/images/logo.png"></ion-img>
+                </ion-col>
+            </ion-row>
+
+            <ion-grid class="info-view">
+
+                <ion-row class="mt-10">
+                    <ion-col>
+                        <ion-item class="box-des">
+                            <ion-input type="text" placeholder="First Name" style="text-transform: capitalize;" formControlName='fname' (keypress)="onlyAlpha($event)"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="mt-5">
+
+                    <ion-col>
+                        <ion-item class="box-des">
+                            <ion-input type="text" placeholder="Last Name" style="text-transform: capitalize;" formControlName='lname' (keypress)="onlyAlpha($event)"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="mt-5">
+
+                    <ion-col>
+                        <ion-item class="box-des">
+                            <ion-input type="text" placeholder="Company Name" style="text-transform: capitalize;" formControlName='lname' (keypress)="onlyAlpha($event)"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="mt-5">
+                    <ion-col>
+                        <ion-item class="box-des">
+                            <ion-input type="email" placeholder="Email" style="text-transform: none !important;" formControlName='email'></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="mt-5">
+                    <ion-col>
+                        <ion-item class="box-des">
+                            <ion-input type="tel" maxlength="10" placeholder="Mobile No" formControlName='mobile'></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col>
+                        <ion-item class="box-des">
+                            <ion-select okText="Ok" placeholder="Select Agent" cancelText="Dismiss" formControlName='agent' (ionChange)="onChangeState($event.target.value)">
+                                <ion-select-option *ngFor="let item of this.tools.CountryCodes" value="{{item.dial_code}}">{{item.flag}} ({{item.dial_code}}) {{item.name}}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="mt-10">
+                    <ion-col>
+                        <ion-button class="btn-red" type="submit">Register</ion-button>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="mt-10">
+                    <ion-col>
+                        <ion-button class="btn-trans" (click)="login()">Login</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
+
+</ion-content>
