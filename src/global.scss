@@ -975,3 +975,19 @@ ion-grid.machine_lists ion-row {
 }
 
 
+.cimg {
+    width: 20px;
+    height: auto;
+    margin-right: 5px;
+}
+
+cimg {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    display: inline-block !important;
+    width: auto;
+    padding: 2px;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: center;
+}

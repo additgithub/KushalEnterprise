@@ -37,30 +37,32 @@
             <ion-img class="menu-img" src="../../../assets/images/search.png"></ion-img>
         </ion-col>
         <ion-col size="11">
-            <ion-input type="search" autocapitalize='sentences' placeholder="Search by Part Name / Part No." [(ngModel)]="restName" (keyup.enter)="Search()" (ionChange)="ionChange()"></ion-input>
+            <ion-input type="search" placeholder="Search by Part Name / Part No." [(ngModel)]="PartsName"
+                (ionChange)="ionChange()"></ion-input>
         </ion-col>
     </ion-row>
 
     <ion-list class="ion-no-padding" style="background: #fff !important">
-        <!-- <ion-row class="m-6-20" *ngFor="let catItem of categoryItemList ; let i=index;"> -->
-        <ion-row class="box-des">
+        <ion-row class="box-des" *ngFor="let part of PartsList ;let i=index;">
             <ion-col size="8">
-                <ion-label class="d-block title f-15">Machine Name</ion-label>
-                <ion-label class="d-block">Part Name</ion-label>
-                <ion-label>Part Number</ion-label>
+                <ion-label class="d-block title f-15">{{part.MachineName}}</ion-label>
+                <ion-label class="d-block">{{part.PartsName}}</ion-label>
+                <ion-label>{{part.PartsNo}}</ion-label>
             </ion-col>
 
             <ion-col size="4">
                 <ion-row style="align-items: center; ">
                     <ion-col style=" text-align:center; padding: 0px; ">
-                        <ion-img class="menu-img" src="../../../assets/images/btnminus.png"></ion-img>
+                        <ion-img class="menu-img" src="../../../assets/images/btnminus.png"
+                            (click)="qty(part,i, 'min') "></ion-img>
                         <!-- <ion-button class="qty-btn " (click)="qty(catItem,i, 'min') ">-</ion-button> -->
                     </ion-col>
                     <ion-col style="text-align:center; padding: 0px;  ">
-                        <ion-label>00</ion-label>
+                        <ion-label>{{part.qty}}</ion-label>
                     </ion-col>
                     <ion-col style="text-align:center; padding: 0px; ">
-                        <ion-img class="menu-img" src="../../../assets/images/btnplus.png"></ion-img>
+                        <ion-img class="menu-img" src="../../../assets/images/btnplus.png"
+                            (click)="qty(part,i, 'add') "></ion-img>
                         <!-- <ion-button class="qty-btn " (click)="qty(catItem,i, 'add') ">+</ion-button> -->
                     </ion-col>
                 </ion-row>
@@ -68,7 +70,7 @@
         </ion-row>
 
     </ion-list>
-    <ion-card-content class="ion-no-padding empty-list-box" *ngIf="routeList?.length == 0">
+    <ion-card-content class="ion-no-padding empty-list-box" *ngIf="PartsList?.length == 0">
         <ion-label class="empty-list">
             No Data Available!
         </ion-label>

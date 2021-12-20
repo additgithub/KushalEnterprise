@@ -21,7 +21,7 @@ export class AddPartsPage {
   constructor(public pickerCtrl: PickerController, public tools: Tools, public formBuilder: FormBuilder, private eventService: EventService, private activatedRoute: ActivatedRoute, private router: Router, public apiService: ApiService) {
     this.from = this.activatedRoute.snapshot.paramMap.get('from');
     this.loginForm = this.formBuilder.group({
-      agent: ['', [Validators.required]],
+      machine: ['', [Validators.required]],
       pname: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       pno: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       QOH: ['', [Validators.required,Validators.pattern('[0-9]+')]],
@@ -33,19 +33,19 @@ export class AddPartsPage {
     this.getMachineList();
   }
 
-  onChangeState(agent) {
-    console.log('Select agent ' + agent);
+  onChangeState(machine) {
+    console.log('Select agent ' + machine);
   }
 
   addPart() {
-    let agent = this.loginForm.get('agent').value;
+    let machine = this.loginForm.get('machine').value;
     let pname = this.loginForm.get('pname').value;
     let pno = this.loginForm.get('pno').value;
     let QOH = this.loginForm.get('QOH').value;
 
     var msg = ''
-    if (agent == undefined || agent == "") {
-      msg = msg + "Select Agent<br />";
+    if (machine == undefined || machine == "") {
+      msg = msg + "Select machine<br />";
     }
     if (pname == "") {
       msg = msg + "Enter Part name<br />";
@@ -63,7 +63,7 @@ export class AddPartsPage {
       if (this.tools.isNetwork()) {
         let postData = new FormData();
 
-        postData.append('MachineID', agent);
+        postData.append('MachineID', machine);
         postData.append('PartsName', pname);
         postData.append('PartsNo', pno);
         postData.append('QOH', QOH);

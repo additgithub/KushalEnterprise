@@ -13,7 +13,7 @@
                 <ion-row class="mt-10">
                     <ion-col>
                         <ion-item class="box-des">
-                            <ion-input type="text" placeholder="First Name" style="text-transform: capitalize;" formControlName='fname' (keypress)="onlyAlpha($event)"></ion-input>
+                            <ion-input type="text" placeholder="First Name" style="text-transform: capitalize;" formControlName='fname'></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -22,7 +22,7 @@
 
                     <ion-col>
                         <ion-item class="box-des">
-                            <ion-input type="text" placeholder="Last Name" style="text-transform: capitalize;" formControlName='lname' (keypress)="onlyAlpha($event)"></ion-input>
+                            <ion-input type="text" placeholder="Last Name" style="text-transform: capitalize;" formControlName='lname' ></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -31,7 +31,7 @@
 
                     <ion-col>
                         <ion-item class="box-des">
-                            <ion-input type="text" placeholder="Company Name" style="text-transform: capitalize;" formControlName='lname' (keypress)="onlyAlpha($event)"></ion-input>
+                            <ion-input type="text" placeholder="Company Name" style="text-transform: capitalize;" formControlName='compname' ></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -55,9 +55,9 @@
                 <ion-row>
                     <ion-col>
                         <ion-item class="box-des">
-                            <ion-select okText="Ok" placeholder="Select Agent" cancelText="Dismiss" formControlName='agent' (ionChange)="onChangeState($event.target.value)">
-                                <ion-select-option *ngFor="let item of this.tools.CountryCodes" value="{{item.dial_code}}">{{item.flag}} ({{item.dial_code}}) {{item.name}}</ion-select-option>
-                            </ion-select>
+                            <ion-select class="form-control" okText="Ok" placeholder="Select Agent" cancelText="Dismiss" formControlName='agent' (ionChange)="onChangeState($event.target.value)">
+                                <ion-select-option *ngFor="let item of AgentList" value="{{item.id}}">{{item.agentname}}</ion-select-option>
+                           </ion-select>
                         </ion-item>
                     </ion-col>
                 </ion-row>

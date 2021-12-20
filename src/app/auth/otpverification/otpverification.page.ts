@@ -14,7 +14,9 @@ export class OTPVerificationPage {
   OTP = '';
   mno = '';
   loginForm: FormGroup;
-  constructor(public tools: Tools,private route: ActivatedRoute,  public formBuilder: FormBuilder,  private eventService:EventService,private apiService: ApiService, private router: Router) {
+  constructor(public tools: Tools,private route: ActivatedRoute, 
+     public formBuilder: FormBuilder,
+       private eventService:EventService,private apiService: ApiService, private router: Router) {
 
     this.route.params
     .subscribe((params) => {

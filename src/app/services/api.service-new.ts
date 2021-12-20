@@ -137,6 +137,35 @@ export class ApiService {
     return this.http.post(environment.BaseUrl + 'auth/verify_login_otp', postData, httpOptions);
   }
 
+  CustomerRegister(fname,lname,compname,email,mobile,agent): any {
+
+    var dID;
+    if (!localStorage.getItem('PlearID')) {
+      dID = localStorage.getItem('PlearID') == '' ? "111111" : localStorage.getItem('PlearID');
+    } else {
+      dID = '111111'
+    }
+
+    var httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': this.bacisAuth,
+        'KUSHAL-API-KEY': environment.apikey,
+      })
+    }
+
+    let postData = new FormData();
+    postData.append("first_name", fname);
+    postData.append("last_name", lname);
+    postData.append("company_name", compname);
+    postData.append("email", email);
+    postData.append("phone", mobile);
+    postData.append("agentid", agent);
+    postData.append("device_token", this.device_id);
+    postData.append("player_id", dID);
+    return this.http.post(environment.BaseUrl + 'auth/customer_register', postData, httpOptions);
+  }
+
   AdminInqList(): any {
     this.setHeaderData();
     return this.http.get(environment.BaseUrl + 'dashboard', this.httpOptions);
@@ -144,6 +173,14 @@ export class ApiService {
   AgentList(): any {
     this.setHeaderData();
     return this.http.get(environment.BaseUrl + 'agent', this.httpOptions);
+  }
+  WithoutCredAgentList(): any {
+    this.setHeaderData();
+    return this.http.get(environment.BaseUrl + 'agent/agent_list', this.httpOptions);
+  }
+  MyInqList(): any {
+    this.setHeaderData();
+    return this.http.get(environment.BaseUrl + 'Inquiry', this.httpOptions);
   }
   MachineList(): any {
     this.setHeaderData();
@@ -184,6 +221,10 @@ export class ApiService {
   EditSaveAgent(Data): any {
     this.setHeaderData();
     return this.http.post(environment.BaseUrl + 'agent/edit_agent', Data, this.httpOptions);
+  }
+  SaveProfile(Data): any {
+    this.setHeaderData();
+    return this.http.post(environment.BaseUrl + 'auth/edit_profile', Data, this.httpOptions);
   }
   AddPart(Data): any {
     this.setHeaderData();
@@ -552,6 +593,16 @@ export class ApiService {
       return JSON.parse(window.localStorage['kushal_user_data']);
     }
     return;
+  }
+  getCartData() {
+    if (window.localStorage['kushal_cart_data']) {
+      return JSON.parse(window.localStorage['kushal_cart_data']);
+    }
+    return;
+  }
+  setCartData(cartData) {
+    console.log(cartData)
+    window.localStorage.setItem('kushal_cart_data', JSON.stringify(cartData));
   }
   getUserId() {
     if (window.localStorage['user_id']) {

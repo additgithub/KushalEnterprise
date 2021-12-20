@@ -25,7 +25,7 @@ export class LoginPage {
   }
 
   register() {
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('register');
   }
 
   login() {

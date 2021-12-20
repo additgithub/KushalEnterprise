@@ -22,7 +22,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/otpverification/otpverification.module').then(m => m.OTPVerificationPageModule)
   },
   {
-    path: 'productslist',
+    path: 'productslist/:MachineID',
     loadChildren: () => import('./pages/productslist/productslist.module').then(m => m.ProductsListPageModule)
   },
   {

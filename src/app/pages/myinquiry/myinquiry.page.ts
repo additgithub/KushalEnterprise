@@ -12,19 +12,42 @@ import { EventService } from 'src/app/services/EventService';
 })
 export class MyInquiryPage {
 
-  
+  InqList = [];
+
   constructor(public tools: Tools,private activatedRoute: ActivatedRoute, 
      public formBuilder: FormBuilder,  private eventService:EventService,
      private apiService: ApiService, private router: Router) {
 
 
   }
-
-  register() {
-    this.router.navigateByUrl('home');
+  ionViewDidEnter() {
+    this.getMyInquiry();
   }
+
   inquirydetails() {
     this.router.navigateByUrl('inquirydetails');
   }
+  getMyInquiry() {
+    if (this.tools.isNetwork()) {
+      this.tools.openLoader();
+      this.apiService.MyInqList().subscribe(data => {
+        this.tools.closeLoader();
 
+        let res: any = data;
+        console.log(' agent > ', res);
+        this.InqList = res.data.Agent;
+
+      }, (error: Response) => {
+        this.tools.closeLoader();
+        console.log(error);
+
+        let err: any = error;
+        this.tools.openAlertToken(err.status, err.error.message);
+      });
+
+    } else {
+      this.tools.closeLoader();
+    }
+
+  }
 }

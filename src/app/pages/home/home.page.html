@@ -4,14 +4,13 @@
             <ion-grid style="padding-left: 0px !important; padding-right: 0px !important;" (click)="Profile()">
                 <ion-row class="user-info-block">
                     <ion-col size="3" class="user-img">
-                        <!-- <ion-img class="user_img" *ngIf="this.user.UserPic" src="{{ this.user.UserPic!='https://backend.iflyhto.com/uploads/user/'? this.user.UserPic:'../../../assets/images/user.png'}}" error="../../../assets/images/user.png"> -->
-                        <!-- <ion-img class="user_img" src="{{ '../../../assets/images/user.png'}}">                         </ion-img>
--->
-                        <ion-label style="text-align: center !important;color: red !important; margin-top: 20px; ">{{user.username.charAt(0).toUpperCase()}}</ion-label>
+  
+                        <ion-label style="text-align: center !important;color: red !important; margin-top: 20px; ">
+                            {{this.user.username.charAt(0).toUpperCase()}}</ion-label>
 
                     </ion-col>
                     <ion-col size="9" class="user-info">
-                        <ion-label class="menu-header-title">{{user.username}}</ion-label>
+                        <ion-label class="menu-header-title">{{this.user.username}}</ion-label>
                         <ion-label class="menu-header " style="overflow: visible;text-overflow: initial;position: relative;
                         white-space: normal;">
                             {{user.email}}
@@ -92,7 +91,8 @@
                         <ion-col size="10.8">
                             <div class="page_had">
                                 <ion-buttons (click)="openFirst()" no-padding>
-                                    <ion-img style="display: inline-block; width: 25px;margin-right: 5px;" class="img" src="../../../assets/images/menu.png"></ion-img>
+                                    <ion-img style="display: inline-block; width: 25px;margin-right: 5px;" class="img"
+                                        src="../../../assets/images/menu.png"></ion-img>
                                 </ion-buttons>
                                 <ion-label class="page_title">Dashbaord</ion-label>
                             </div>
@@ -111,64 +111,69 @@
     </ion-header>
 
     <!-- For User -->
-  
-
-
-    <ion-row style="padding: 0;"  *ngIf="user.roleid==2">
+    <ion-row style="padding: 0;" *ngIf="user.roleid==2">
         <ion-col style="padding: 0;" size='12'>
             <div class="search_box">
                 <ion-img class="search_icon" src="../../../assets/images/search.png"></ion-img>
-                <ion-input type="search" autocapitalize='sentences' placeholder="Search by Part Name / Part No." [(ngModel)]="restName" (keyup.enter)="Search()" (ionChange)="ionChange()"></ion-input>
+                <ion-input type="search" placeholder="Search Machine" [(ngModel)]="machineName"
+                    (ionChange)="ionChangeUser()"></ion-input>
             </div>
         </ion-col>
     </ion-row>
 
     <!-- For Admin -->
-    
-
-    <ion-row style="padding: 0;"  *ngIf="user.roleid==1">
+    <ion-row style="padding: 0;" *ngIf="user.roleid==1">
         <ion-col style="padding: 0;" size='12'>
             <div class="search_box">
                 <ion-img class="search_icon" src="../../../assets/images/search.png"></ion-img>
-                <ion-input type="search"  placeholder="Search Inquiry" [(ngModel)]="fullname"  (ionChange)="ionChange()"></ion-input>
+                <ion-input type="search" placeholder="Search Inquiry" [(ngModel)]="fullname"
+                    (ionChange)="ionChangeAdmin()"></ion-input>
             </div>
         </ion-col>
     </ion-row>
-    
+
 
     <ion-content style="background: #fff">
 
         <!-- For User-->
-        <ion-list *ngIf="user.roleid==2" class="ion-no-padding" style="background: #fff !important;margin: 10px;" (click)="productlist()">
-            <!-- *ngIf="routeList?.length > 0" -->
-            <!-- <ion-card-content class="card-block ion-no-padding" *ngFor="let route of routeList" [ngStyle]="{'background-image':'url(' +'https://backend.iflyhto.com/uploads/country/Lighthouse.jpg' + ')'}"> -->
 
-            <ion-card-content class="card-block ion-no-padding" [ngStyle]="{'background-image':'url(' +'https://backend.iflyhto.com/uploads/country/Lighthouse.jpg' + ')'}">
-                <ion-grid class="ion-no-padding card-content-block">
+        <ion-grid class="p-0 machine_lists" *ngFor="let machine of MachineList ; " (click)="productlist(machine.MachineID)">
+            <ion-row class="p-0">
+                <ion-col size="12" class="p-0">
+                    <div class="img_box" (click)="Part(machine.MachineID)">
+                        <ion-img class="ac_img" src="{{machine.MachinePic}}"></ion-img>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="box-des" style="align-items: center !important; border: none !important; ">
+                <ion-col >
+                    <ion-label class="d-block">{{machine.MachineName}}</ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
 
-                    <ion-row class="route-block">
-                        <ion-col class="route-count">
-                            <ion-label>Machine 1</ion-label>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-card-content>
-        </ion-list>
+
+        <ion-card-content class="ion-no-padding empty-list-box" *ngIf="MachineList?.length == 0 && user.roleid==2">
+            <ion-label class="empty-list">
+                No Data Available!
+            </ion-label>
+        </ion-card-content>
 
         <!-- For Admin-->
 
         <ion-list *ngIf="user.roleid==1" class="ion-no-padding" style="background: #fff !important">
-            <ion-row class="box-des" style="padding: 5px;" *ngFor="let inq of AdminInqList ; let i=index; " (click)="adminInquiry(inq.InquiryHdrID)">
-                <ion-col class="left_col"> 
+            <ion-row class="box-des" style="padding: 5px;" *ngFor="let inq of AdminInqList ; let i=index; "
+                (click)="adminInquiry(inq.InquiryHdrID)">
+                <ion-col class="left_col">
                     <ion-label class="d-block title f-15">Inquiry No. : # {{inq.InqNO}}</ion-label>
                     <ion-label class="content d-block">Inq Date : {{inq.InqDate}}</ion-label>
                 </ion-col>
 
                 <ion-col class="right_col">
-                    <ion-button class="btn-green" >{{inq.Status}}</ion-button>
+                    <ion-button class="btn-green">{{inq.Status}}</ion-button>
                 </ion-col>
-                <ion-col class="left_col">                    
-                    <ion-label class="content d-block" >Customer : {{inq.fullname}}</ion-label>
+                <ion-col class="left_col">
+                    <ion-label class="content d-block">Customer : {{inq.fullname}}</ion-label>
                 </ion-col>
 
                 <ion-col class="right_col">
@@ -178,7 +183,7 @@
 
         </ion-list>
 
-        <ion-card-content  class="ion-no-padding empty-list-box" *ngIf="AdminInqList?.length == 0">
+        <ion-card-content class="ion-no-padding empty-list-box" *ngIf="AdminInqList?.length == 0 && user.roleid==1">
             <ion-label class="empty-list">
                 No Data Available!
             </ion-label>
