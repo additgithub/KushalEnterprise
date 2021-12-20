@@ -48,11 +48,11 @@
         </ion-row>
     </ion-grid>
 
-
-    <ion-card-content class="ion-no-padding empty-list-box" *ngIf="MachineList?.length == 0">
-        <ion-label class="empty-list">
-            No Data Available!
-        </ion-label>
-    </ion-card-content>
-
+    <ion-grid class="container empty-list-box"  *ngIf="MachineList?.length == 0">
+        <ion-row class="p-0">
+            <ion-col size="12" class="p-0">
+                <ion-label class="empty-list">No Data Available!</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid> 
 </ion-content>

@@ -5,7 +5,6 @@
                 <ion-row style="align-items: center;">
                     <ion-col size="9.7">
                         <div class="page_had">
-
                             <ion-buttons (click)="tools.backPage()" no-padding>
                                 <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
                             </ion-buttons>
@@ -18,55 +17,31 @@
     </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-    <div>
-        <form [formGroup]="loginForm"  style="padding: 0 0px;">
-
-            <ion-grid>
-                <ion-row class="mt-10">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-select okText="Ok" placeholder="Select Machine Name" cancelText="Dismiss" formControlName='machine' (ionChange)="onChangeState($event.target.value)">
-                                <ion-select-option *ngFor="let item of MachineList" value="{{item.MachineID}}">{{item.MachineName}}</ion-select-option>
-                            </ion-select>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text" placeholder="Enter Part Name"  formControlName='pname'></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text" placeholder="Enter Part Number"  formControlName='pno' ></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="number" placeholder="Enter Part QTY"  formControlName='QOH'></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-10">
-                    <ion-col>
+    <form [formGroup]="loginForm"  style="padding: 0 0px;">
+        <ion-grid class="container">
+            <ion-row class="p-0">
+                <ion-col size="12" class="p-0">
+                    <div class="form-group">
+                        <ion-select okText="Ok" placeholder="Select Machine Name" class="custom_select" cancelText="Dismiss" formControlName='agent' (ionChange)="onChangeState($event.target.value)">
+                            <ion-select-option *ngFor="let item of MachineList" value="{{item.MachineID}}">{{item.MachineName}}</ion-select-option>
+                        </ion-select>
+                    </div>
+                    <div class="form-group">
+                        <ion-input type="text" class="form-control" placeholder="Enter Part Name"  formControlName='pname'></ion-input>
+                    </div>
+                    <div class="form-group">
+                        <ion-input type="text" class="form-control" placeholder="Enter Part Number"  formControlName='pno' ></ion-input>
+                    </div>
+                    <div class="form-group">
+                        <ion-input type="number" class="form-control" placeholder="Enter Part QTY"  formControlName='QOH'></ion-input>
+                    </div>
+                    <div class="button_box">
                         <ion-button class="btn-red" (click)="addPart()">Add Part</ion-button>
-                    </ion-col>
-                </ion-row>
-
-            </ion-grid>
-        </form>
-    </div>
-
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>               
+    </form>
 </ion-content>
 

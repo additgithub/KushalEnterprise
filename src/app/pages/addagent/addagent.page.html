@@ -20,58 +20,28 @@
 
 
 <ion-content>
-    <div>
-        <form [formGroup]="loginForm"  style="padding: 0 0px;">
-
-            <ion-grid>
-
-                <ion-row class="mt-10">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text" placeholder="First Name" style="text-transform: capitalize;"
-                                formControlName='fname' (keypress)="onlyAlpha($event)"></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-5">
-
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text" placeholder="Last Name" style="text-transform: capitalize;"
-                                formControlName='lname' (keypress)="onlyAlpha($event)"></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="email" placeholder="Email" style="text-transform: none !important;"
-                                formControlName='email'></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="tel" maxlength="10" placeholder="Mobile No" formControlName='mobile'>
-                            </ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-
-
-            </ion-grid>
-        </form>
-    </div>
-
-</ion-content>
-
-<ion-row class="mt-10">
-    <ion-col>
-        <ion-button class="btn-red" (click)="addAgent()">Add Agent</ion-button>
-    </ion-col>
-</ion-row>
+    <form [formGroup]="loginForm" (ngSubmit)="addagent()" style="padding: 0 0px;">
+        <ion-grid class="container">
+            <ion-row class="p-0">
+                <ion-col size="12" class="p-0">
+                    <div class="form-group">
+                        <ion-input type="text" placeholder="First Name" class="form-control" formControlName='fname' (keypress)="onlyAlpha($event)"></ion-input>
+                    </div>
+                    <div class="form-group"> 
+                        <ion-input type="text" placeholder="Last Name" class="form-control" formControlName='lname' (keypress)="onlyAlpha($event)"></ion-input>                       
+                    </div>
+                    <div class="form-group">   
+                        <ion-input type="email" placeholder="Email" class="form-control" formControlName='email'></ion-input>                     
+                    </div>
+                    <div class="form-group">   
+                        <ion-input type="tel" maxlength="10" placeholder="Mobile No" class="form-control" formControlName='mobile'></ion-input>                     
+                    </div>
+                    <div class="button_box">
+                        <ion-button class="btn-red" (click)="addAgent()">Add Agent</ion-button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>    
+    

@@ -1,27 +1,20 @@
 <ion-menu side="start" menuId="first">
     <ion-header>
-        <ion-item>
-            <ion-grid style="padding-left: 0px !important; padding-right: 0px !important;" (click)="Profile()">
-                <ion-row class="user-info-block">
-                    <ion-col size="3" class="user-img">
-  
-                        <ion-label style="text-align: center !important;color: red !important; margin-top: 20px; ">
-                            {{this.user.username.charAt(0).toUpperCase()}}</ion-label>
-
-                    </ion-col>
-                    <ion-col size="9" class="user-info">
-                        <ion-label class="menu-header-title">{{this.user.username}}</ion-label>
-                        <ion-label class="menu-header " style="overflow: visible;text-overflow: initial;position: relative;
-                        white-space: normal;">
-                            {{user.email}}
-                        </ion-label>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-item>
+        <div class="siderbar_header" (click)="Profile()">
+            <ion-row class="user-info-block">
+                <ion-col size="3" class="user-img">
+                    <ion-label style="text-align: center !important;color: red !important; margin-top: 20px; ">{{user.username.charAt(0).toUpperCase()}}</ion-label>
+                </ion-col>
+                <ion-col size="9" class="user-info">
+                    <ion-label class="menu-header-title">{{user.username}}</ion-label>
+                    <ion-label class="menu-header " style="overflow: visible;text-overflow: initial;position: relative;
+                    white-space: normal;">
+                        {{user.email}}
+                    </ion-label>
+                </ion-col>
+            </ion-row>
+        </div>
     </ion-header>
-
-
     <ion-content class="menu" no-padding>
         <ion-list no-padding>
 
@@ -82,7 +75,6 @@
 </ion-menu>
 
 <ion-router-outlet main>
-
     <ion-header>
         <ion-toolbar>
             <ion-title>
@@ -165,21 +157,63 @@
             <ion-row class="box-des" style="padding: 5px;" *ngFor="let inq of AdminInqList ; let i=index; "
                 (click)="adminInquiry(inq.InquiryHdrID)">
                 <ion-col class="left_col">
+    <ion-content style="background: #fff">
+        <ion-grid class="container search_compo">
+            <ion-row style="padding: 0;"  *ngIf="user.roleid==2">
+                <ion-col style="padding: 0;" size='12'>
+                    <div class="search_box">
+                        <ion-img class="search_icon" src="../../../assets/images/search.png"></ion-img>
+                        <ion-input type="search" autocapitalize='sentences' placeholder="Search by Part Name / Part No." [(ngModel)]="restName" (keyup.enter)="Search()" (ionChange)="ionChange()"></ion-input>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row style="padding: 0;"  *ngIf="user.roleid==1">
+                <ion-col style="padding: 0;" size='12'>
+                    <div class="search_box">
+                        <ion-img class="search_icon" src="../../../assets/images/search.png"></ion-img>
+                        <ion-input type="search"  placeholder="Search Inquiry" [(ngModel)]="fullname"  (ionChange)="ionChange()"></ion-input>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <div class="page_wapper">
+        <ion-grid class="container"  *ngIf="user.roleid==1">
+            <ion-row class="box-des" *ngFor="let inq of AdminInqList ; let i=index; " (click)="adminInquiry(inq.InquiryHdrID)">
+                <ion-col class="left_col"> 
                     <ion-label class="d-block title f-15">Inquiry No. : # {{inq.InqNO}}</ion-label>
                     <ion-label class="content d-block">Inq Date : {{inq.InqDate}}</ion-label>
                 </ion-col>
-
                 <ion-col class="right_col">
                     <ion-button class="btn-green">{{inq.Status}}</ion-button>
                 </ion-col>
                 <ion-col class="left_col">
                     <ion-label class="content d-block">Customer : {{inq.fullname}}</ion-label>
                 </ion-col>
-
                 <ion-col class="right_col">
                     <ion-label class="content">Agent : Test</ion-label>
                 </ion-col>
             </ion-row>
+        </ion-grid>
+
+        <ion-grid class="container machine_lists" *ngIf="user.roleid==2">
+            <ion-row class="p-0">
+                <ion-col size="12" class="p-0">
+                    <div class="img_box" (click)="productlist()">
+                        <ion-img class="ac_img" src="https://backend.iflyhto.com/uploads/country/Lighthouse.jpg"></ion-img>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="box-des" style="align-items: center !important; border: none !important; " >
+                <ion-col class="left_col"> 
+                    <ion-label class="d-block">Machine 1</ion-label>
+                </ion-col>
+                <ion-col class="right_col"> 
+                    <div class="action_buttion">
+                       
+                    </div>            
+                </ion-col>
+            </ion-row>
+        </ion-grid>
 
         </ion-list>
 
@@ -189,5 +223,13 @@
             </ion-label>
         </ion-card-content>
 
+        <ion-grid class="container empty-list-box" *ngIf="AdminInqList?.length == 0">
+            <ion-row class="p-0">
+                <ion-col size="12" class="p-0">
+                    <ion-label class="empty-list">No Data Available!</ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>   
+    </div>         
     </ion-content>
 </ion-router-outlet>
