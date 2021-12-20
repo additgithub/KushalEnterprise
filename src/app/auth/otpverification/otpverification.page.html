@@ -2,30 +2,19 @@
     <div class="main-content">
         <ion-img class="img-logo" src="../../../assets/images/logo.png"></ion-img>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="padding: 0 0px;">
-
             <ion-grid class="info-view">
-
-                <ion-row class="mt-20">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="tel" maxlength="6" placeholder="Verification Code" formControlName='otp'></ion-input>
-                        </ion-item>
+                <ion-row class="p-0">
+                    <ion-col size="12">
+                        <div class="form-group">
+                            <ion-input type="tel" maxlength="6" class="form-control" placeholder="Verification Code" formControlName='otp'></ion-input>
+                        </div>
+                        <div class="button_box">
+                            <ion-button class="btn-red" type="submit">Submit</ion-button>
+                            <ion-button class="btn-trans" (click)="resendOtp()">RESEND</ion-button>
+                        </div>
                     </ion-col>
                 </ion-row>
-
-                <ion-row class="mt-10">
-                    <ion-col>
-                        <ion-button class="btn-red" type="submit">Submit</ion-button>
-                    </ion-col>
-                </ion-row>
-                <ion-row class="mt-10">
-                    <ion-col>
-                        <ion-button class="btn-trans" (click)="resendOtp()">RESEND</ion-button>
-                    </ion-col>
-                </ion-row>
-
             </ion-grid>
         </form>
     </div>
-
 </ion-content>

@@ -45,9 +45,7 @@
     height: 30% !important;
 }
 
-ion-item {
-    // --padding-start: 0px !important;
-}
+
 
 ion-app {
     // margin-top: env(safe-area-inset-top);
@@ -64,12 +62,9 @@ ion-header {
 }
 
 ion-content {
-    // --background: white !important;
-    // background: white !important;
-    --background: #f9f9f9 !important;
-    background: #f9f9f9 !important;
+	--background: #fff !important;
+	background: #fff !important;
 }
-
 .alert-wrapper {
     --width: 90% !important;
     width: 90% !important;
@@ -120,17 +115,7 @@ ion-radio {
     margin-right: 5px;
 }
 
-.form-control {
-    --background: transparent;
-    background: transparent;
-    --ion-background-color: transparent;
-    --highlight-color-focused: black;
-    --border-color: transparent;
-    border: 0px solid #fff;
-    border-bottom: 1px solid #cacaca;
-    color: #fff;
-    font-size: 13px !important;
-}
+
 
 .back {
     width: 30px;
@@ -826,14 +811,11 @@ img.back-btn {
 }
 
 .empty-list {
-    color: #010b17!important;
-    font-size: 25px !important;
-    text-align: center !important;
-    width: 100% !important;
-    position: absolute !important;
-    top: 43% !important;
-    left: auto;
-    transform: translate(0%, -50%) !important;
+	color: #010b17 !important;
+	font-size: 20px !important;
+	text-align: center !important;
+	width: 100%;
+	display: block;
 }
 
 .page_had {
@@ -864,13 +846,13 @@ img.back-btn {
 }
 .box-des .left_col {
     flex: 0 0 100%;
-    max-width: calc(100% - 201px);
+    max-width: calc(100% - 121px);
     padding: 0px 5px !important;
 }
 
 .box-des .right_col {
-    max-width: 200px;
-    flex: 0 0 200px;
+    max-width: 120px;
+    flex: 0 0 120px;
     text-align: center;
     padding: 0px 5px !important;
 }
@@ -901,7 +883,7 @@ ion-input {
 
 .search_box {
     border: 1px solid #d5d5d5;
-    margin: 10px;
+    margin: 0px;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -975,3 +957,136 @@ ion-grid.machine_lists ion-row {
 }
 
 
+.form-control {
+	--background: #fff;
+	background: #fff;
+	--ion-background-color: transparent;
+	--highlight-color-focused: black;
+	--border-color: transparent;
+	border: 1px solid #d5d5d5;
+	color: #000 !important;
+	font-size: 15px !important;
+	border-radius: 5px;
+	padding: 5px !important;
+	font-family: 'Poppins';
+}
+.form-group {
+	margin-bottom: 12px;
+}
+
+.button_box ion-button {
+	margin-bottom: 12px;
+}
+
+.container {
+	padding: 0px 10px;
+}
+.box-des {
+	margin: 0px !important;
+	margin-bottom: 10px !important;
+}
+
+.search_compo {
+    z-index: 11111;
+    position: fixed;
+    top: 56px;
+    background: #fff;
+    width: 100%;
+}
+
+.page_wapper {
+	padding: 65px 0;
+}
+.list-item {
+    cursor: pointer !important;
+}
+.lbl-style-m {
+	color: white !important;
+	font-size: 15px !important;
+	font-family: 'Poppins-SemiBold' !important;
+    cursor: pointer !important;
+}
+
+
+
+.form-group.fileuploads {
+	border: 1px solid #d5d5d5;
+	color: #000 !important;
+	font-size: 16px !important;
+	border-radius: 5px;
+	padding: 14px 13px !important;
+	display: flex;
+	align-items: center;
+	position: relative;
+    justify-content: space-between;
+}
+
+.form-group.fileuploads ion-label {
+	color: #000 !important;
+	font-size: 15px !important;
+	border-radius: 5px;
+	opacity: 0.5;
+	padding: 0px !important;
+}
+
+.form-group.fileuploads .file_input {
+	position: absolute;
+	top: 0;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 11;
+	opacity: 0;
+}
+
+.form-group.fileuploads .menu-img {
+	padding: 0px !important;
+	margin: 0px !important;
+	flex: 0 0 24px;
+	max-width: 24px;
+}
+
+
+.custom_select {
+	--background: #fff;
+	background: #fff;
+	--ion-background-color: transparent;
+	--highlight-color-focused: black;
+	--border-color: transparent;
+	border: 1px solid #d5d5d5;
+	color: #000 !important;
+	font-size: 15px !important;
+	border-radius: 5px;
+	padding: 14px 12px !important;
+	font-family: "Poppins";
+}
+
+.container.empty-list-box {
+	padding: 200px 10px !important;
+}
+
+
+.form-group.contact_info {
+	border: 1px solid #d5d5d5;
+	border-radius: 5px;
+	padding: 12px;
+}
+
+.contact_info .content {
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	font-size: 14px !important;
+	color: gray !important;
+}
+
+.contact_info .title, .contact_info .title a {
+	color: #000 !important;
+	font-size: 15px !important;
+	line-height: 19px !important;
+    margin: 0px !important;
+	display: block !important;
+}
+.contact_info .title {
+	margin-top: 8px !important;
+}

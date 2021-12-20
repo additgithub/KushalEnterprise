@@ -5,7 +5,6 @@
                 <ion-row style="align-items: center;">
                     <ion-col size="9.7">
                         <div class="page_had">
-
                             <ion-buttons (click)="tools.backPage()" no-padding>
                                 <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
                             </ion-buttons>
@@ -18,58 +17,25 @@
     </ion-toolbar>
 </ion-header>
 
-
-<ion-content class="main-content">
-    <ion-grid>
-        <ion-row class="box-des">
-            <ion-col>
-                <ion-row>
-                    <ion-col>
-                        <ion-label class="menu-header">Email Id</ion-label>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row>
-                    <ion-col>
-                        <ion-label class="menu-header-title">test@test.com</ion-label>
-                    </ion-col>
-                </ion-row>
+<ion-content>
+    <ion-grid class="container">
+        <ion-row class="p-0">
+            <ion-col size="12" class="p-0">
+                <div class="form-group contact_info">
+                    <ion-label class="content">Email Id</ion-label>
+                    <ion-label class="title"><a href="mailto:test@test.com">test@test.com</a></ion-label>
+                </div>
+                <div class="form-group contact_info">
+                    <ion-label class="content">Mobile No.</ion-label>
+                    <ion-label class="title"><a href="tel:+919978277570">+91 9978277570</a></ion-label>
+                </div>
+                <div class="form-group contact_info">
+                    <ion-label class="content">Address</ion-label>
+                    <ion-label class="title">Kushal Enterprise, 234,cosmo complex,Mumbai.</ion-label>
+                </div>
             </ion-col>
-
-        </ion-row>
-
-        <ion-row class="box-des">
-            <ion-col>
-                <ion-row>
-                    <ion-col>
-                        <ion-label class="menu-header">Mobile No</ion-label>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row>
-                    <ion-col>
-                        <ion-label class="menu-header-title">+91 9978277570</ion-label>
-                    </ion-col>
-                </ion-row>
-            </ion-col>
-
-        </ion-row>
-        <ion-row class="box-des">
-            <ion-col>
-                <ion-row>
-                    <ion-col>
-                        <ion-label class="menu-header">Address</ion-label>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row>
-                    <ion-col>
-                        <ion-label class="menu-header-title">Kushal Enterprise, 234,cosmo complex,Mumbai.
-                        </ion-label>
-                    </ion-col>
-                </ion-row>
-            </ion-col>
-
         </ion-row>
     </ion-grid>
 </ion-content>
+
+

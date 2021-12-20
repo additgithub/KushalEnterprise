@@ -22,7 +22,7 @@
 
 
 <ion-content style="background: #fff">
-    <ion-grid style="padding: 0px; margin: 0;">
+    <ion-grid class="container">
         <ion-row class="box-des">
             <ion-col class="left_col"> 
                 <ion-label class="d-block title f-15">Inquiry No. : # {{InqNO}}</ion-label>
@@ -32,15 +32,13 @@
             </ion-col>        
             <ion-col class="right_col">
                 <div class="select_box">
-                    <ion-select okText="Ok" placeholder="Select Status" cancelText="Dismiss"
-                                (ionChange)="onChangeState($event.target.value)">
-                                <ion-select-option *ngFor="let item of StatusList">{{item.Status}}</ion-select-option>
-                            </ion-select>
+                    <ion-select okText="Ok" placeholder="Select Status" cancelText="Dismiss" class="custom_select" (ionChange)="onChangeState($event.target.value)">
+                        <ion-select-option *ngFor="let item of StatusList">{{item.Status}}</ion-select-option>
+                    </ion-select>
                 </div>
                 <ion-button class="btn-red" (click)="accept()">Save</ion-button>
             </ion-col>
         </ion-row>
-
 
         <ion-row class="products_list box-des" *ngFor="let inq of AdminInqDetails ;">
             <ion-col class="prod_content left_col">
@@ -52,9 +50,12 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-card-content class="ion-no-padding empty-list-box" *ngIf="AdminInqDetails?.length == 0">
-        <ion-label class="empty-list">
-            No Data Available!
-        </ion-label>
-    </ion-card-content>
+
+    <ion-grid class="container empty-list-box" *ngIf="AdminInqDetails?.length == 0">
+        <ion-row class="p-0">
+            <ion-col size="12" class="p-0">
+                <ion-label class="empty-list">No Data Available!</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

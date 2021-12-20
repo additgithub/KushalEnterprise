@@ -5,7 +5,6 @@
                 <ion-row style="align-items: center;">
                     <ion-col size="9.7">
                         <div class="page_had">
-
                             <ion-buttons (click)="tools.backPage()" no-padding>
                                 <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
                             </ion-buttons>
@@ -18,60 +17,28 @@
     </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-    <div>
-        <form [formGroup]="loginForm"  style="padding: 0 0px;">
-
-            <ion-grid>
-
-                <ion-row class="mt-10">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text" placeholder="First Name" 
-                                formControlName='fname' ></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-5">
-
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text" placeholder="Last Name" 
-                                formControlName='lname' ></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="email" placeholder="Email" style="text-transform: none !important;"
-                                formControlName='email'></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="tel" maxlength="10" placeholder="Mobile No" formControlName='mobile'>
-                            </ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-
-
-            </ion-grid>
-        </form>
-    </div>
-
-</ion-content>
-
-<ion-row class="mt-10">
-    <ion-col>
-        <ion-button class="btn-red" (click)="saveAgent()">Save</ion-button>
-    </ion-col>
-</ion-row>
+    <form [formGroup]="loginForm"  style="padding: 0 0px;">
+        <ion-grid class="container">
+            <ion-row class="p-0">
+                <ion-col size="12" class="p-0">
+                    <div class="form-group">
+                        <ion-input type="text" placeholder="First Name" class="form-control" formControlName='fname' ></ion-input>
+                    </div>
+                    <div class="form-group"> 
+                        <ion-input type="text" placeholder="Last Name" class="form-control" formControlName='lname' ></ion-input>                       
+                    </div>
+                    <div class="form-group">   
+                        <ion-input type="email" placeholder="Email" class="form-control" formControlName='email'></ion-input>                   
+                    </div>
+                    <div class="form-group">   
+                        <ion-input type="tel" maxlength="10" class="form-control" placeholder="Mobile No" formControlName='mobile'></ion-input>                     
+                    </div>
+                    <div class="button_box">
+                        <ion-button class="btn-red" (click)="saveAgent()">Save</ion-button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>  

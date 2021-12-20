@@ -20,52 +20,30 @@
 
 
 <ion-content>
-    <div>
-        <form [formGroup]="loginForm"  style="padding: 0 0px;">
-
-            <ion-grid>
-                
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text" [readonly]="isReadonly">{{this.MachineName}}</ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text"   formControlName='pname'></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text" [readonly]="isReadonly" >{{this.PartsNo}}</ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="number"   formControlName='QOH'></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-10">
-                    <ion-col>
+    <form [formGroup]="loginForm"  style="padding: 0 0px;">
+        <ion-grid class="container">
+            <ion-row class="p-0">
+                <ion-col size="12" class="p-0">
+                    <div class="form-group">
+                        <ion-input type="text" [readonly]="isReadonly">{{this.MachineName}}</ion-input>
+                    </div>
+                    <div class="form-group"> 
+                        <ion-input type="text"   formControlName='pname'></ion-input>                       
+                    </div>
+                    <div class="form-group">   
+                        <ion-input type="text" [readonly]="isReadonly" >{{this.PartsNo}}</ion-input>                 
+                    </div>
+                    <div class="form-group">   
+                        <ion-input type="number"   formControlName='QOH'></ion-input>                     
+                    </div>
+                    <div class="button_box">
                         <ion-button class="btn-red" (click)="savePart()">Save</ion-button>
-                    </ion-col>
-                </ion-row>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>  
 
-            </ion-grid>
-        </form>
-    </div>
 
-</ion-content>
 
