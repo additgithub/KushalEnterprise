@@ -192,9 +192,12 @@ export class Tools {
                     text: status == 401 ? 'Login' : 'Ok',
                     handler: () => {
                         if (status == 401) {
-                            localStorage.setItem('kushal_user_data', '');
-                            localStorage.setItem('login_token', '');
+                    
                             localStorage.clear();
+                            localStorage.removeItem('kushal_cart_data');
+                            localStorage.removeItem('user_id');
+                            localStorage.removeItem('login_token');
+                            localStorage.removeItem('kushal_user_data');
                             this.router.navigateByUrl('/login', { replaceUrl: true });
                         }
                     }
@@ -220,7 +223,12 @@ export class Tools {
                     text: btnYes ? btnYes : 'Yes',
                     handler: () => {
                         localStorage.clear();
-                        this.router.navigateByUrl('/login');
+                        localStorage.removeItem('kushal_cart_data');
+                        localStorage.removeItem('user_id');
+                        localStorage.removeItem('login_token');
+                        localStorage.removeItem('kushal_user_data');
+
+                        this.router.navigateByUrl('/login', { replaceUrl: true });
                     }
                 }
             ], backdropDismiss: true
@@ -238,9 +246,11 @@ export class Tools {
                     text: btnOk,
                     handler: () => {
 
-                        localStorage.setItem('kushal_user_data', '');
-                        localStorage.setItem('login_token', '');
                         localStorage.clear();
+                        localStorage.removeItem('kushal_cart_data');
+                        localStorage.removeItem('user_id');
+                        localStorage.removeItem('login_token');
+                        localStorage.removeItem('kushal_user_data');
                         this.router.navigateByUrl('/login', { replaceUrl: true });
                     }
                 }

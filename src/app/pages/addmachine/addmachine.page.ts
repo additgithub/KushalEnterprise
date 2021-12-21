@@ -95,6 +95,10 @@ export class AddMachinePage {
       msg = msg + "Enter your Machine name<br />";
     }
    
+    if(this.image1 == undefined){
+      msg = msg + "Select Machine Image<br />";
+
+    }
 
 
     if (msg != '') {

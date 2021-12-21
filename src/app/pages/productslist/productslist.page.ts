@@ -26,7 +26,6 @@ export class ProductsListPage {
   constructor(public tools: Tools, private route: ActivatedRoute,
     public formBuilder: FormBuilder, private eventService: EventService,
     private apiService: ApiService, private router: Router) {
-    this.sumCart = this.PartsList.reduce((a, b) => a + b.qty, 0);
 
     this.route.params
       .subscribe((params) => {
@@ -37,8 +36,12 @@ export class ProductsListPage {
   }
 
   ionViewDidEnter() {
+    if (this.apiService.getCartData() != undefined) {
+      this.sumCart = this.apiService.getCartData().reduce((a, b) => a + b.qty, 0);
+    }
     this.getMachineParts();
   }
+  
   cart() {
     this.router.navigateByUrl("cart");
 
@@ -57,9 +60,27 @@ export class ProductsListPage {
         console.log(' Response ', res);
         this.PartsList = [];
         this.itemsAll = [];
+
         for (let i = 0; i < res.data.Machinepart.length; i++) {
           const element = res.data.Machinepart[i];
-          element.qty = 0;
+
+          if (this.apiService.getCartData() != undefined) {
+
+            let index = this.apiService.getCartData().findIndex(el => el.MachinePartsID === element.MachinePartsID)
+            console.log("cart qty >>", index)
+
+            if (index == - 1) {
+              element.qty = 0;
+            } else {
+              console.log("index qty >>",this.apiService.getCartData()[index].qty)
+              element.qty = this.apiService.getCartData()[index].qty;
+            }
+          } else {
+            element.qty = 0;
+
+          }
+
+
           this.PartsList.push(element);
           this.itemsAll.push(element);
         }
@@ -107,9 +128,21 @@ export class ProductsListPage {
     }
     this.sumCart = this.PartsList.reduce((a, b) => a + b.qty, 0);
 
-    this.cartCnt.push(this.PartsList[i]);
+    let index = this.cartCnt.findIndex(el => el.MachinePartsID === item.MachinePartsID)
+
+    console.log('index ', index)
+    if (index != -1) {
+      console.log('this.cartCnt[index].qty ', this.cartCnt[index].qty)
+      this.cartCnt[index].qty = item.qty;
+      if (this.cartCnt[index].qty == 0) {
+        this.cartCnt.splice(index, 1);
+      }
+    } else {
+      this.cartCnt.push(item);
+    }
+
     this.apiService.setCartData(this.cartCnt);
 
-    console.log("cartcant data >>",this.apiService.getCartData())
+    console.log("cartcant data >>", this.apiService.getCartData())
   }
 }

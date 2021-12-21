@@ -22,16 +22,29 @@ export class HomePage {
   ALLMachineList = [];
   machineName = "";
 
+  sumCart = 0
+  class_add = 'img carticon animate'
+  cs_count = 'notification'
+
   constructor(private menu: MenuController, public tools: Tools,
     private router: Router, private apiService: ApiService) {
     this.user = this.apiService.getUserData();
+   
     // events.subscribe('profileUpdate', (item) => {
     //   this.user = item;
     //   console.log('Event call')
     // });
   }
+  // ionViewWillEnter() {
+  //   this.user = this.apiService.getUserData();
+  //    }
 
   ionViewDidEnter() {
+    if(this.apiService.getCartData()!=undefined){
+      this.sumCart = this.apiService.getCartData().reduce((a, b) => a + b.qty, 0);
+    }
+    this.user = this.apiService.getUserData();
+
     if (this.user.roleid === '1') {
       this.getAdminInquiryList();
     }

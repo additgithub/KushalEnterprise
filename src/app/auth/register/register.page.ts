@@ -103,7 +103,7 @@ export class RegisterPage {
   getAgentList() {
     if (this.tools.isNetwork()) {
       this.tools.openLoader();
-      this.apiService.WithoutCredAgentList().subscribe(data => {
+      this.apiService.AgentList().subscribe(data => {
         this.tools.closeLoader();
 
         let res: any = data;

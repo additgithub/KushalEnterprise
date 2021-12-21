@@ -23,7 +23,7 @@
             <ion-row class="p-0">
                 <ion-col size="12" class="p-0">
                     <div class="form-group">
-                        <ion-select okText="Ok" placeholder="Select Machine Name" class="custom_select" cancelText="Dismiss" formControlName='agent' (ionChange)="onChangeState($event.target.value)">
+                        <ion-select okText="Ok" placeholder="Select Machine Name" class="custom_select" cancelText="Dismiss" formControlName='machine' (ionChange)="onChangeState($event.target.value)">
                             <ion-select-option *ngFor="let item of MachineList" value="{{item.MachineID}}">{{item.MachineName}}</ion-select-option>
                         </ion-select>
                     </div>

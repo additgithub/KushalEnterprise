@@ -170,11 +170,8 @@ export class ApiService {
     this.setHeaderData();
     return this.http.get(environment.BaseUrl + 'dashboard', this.httpOptions);
   }
+ 
   AgentList(): any {
-    this.setHeaderData();
-    return this.http.get(environment.BaseUrl + 'agent', this.httpOptions);
-  }
-  WithoutCredAgentList(): any {
     this.setHeaderData();
     return this.http.get(environment.BaseUrl + 'agent/agent_list', this.httpOptions);
   }
@@ -190,7 +187,10 @@ export class ApiService {
     this.setHeaderData();
     return this.http.get(environment.BaseUrl + 'status', this.httpOptions);
   }
-
+  AddCartDetails(Data): any {
+    this.setHeaderData();
+    return this.http.post(environment.BaseUrl + 'inquiry/cart_checkout', Data, this.httpOptions);
+  }
   AdminInqDetail(Data): any {
     this.setHeaderData();
     return this.http.post(environment.BaseUrl + 'dashboard', Data, this.httpOptions);

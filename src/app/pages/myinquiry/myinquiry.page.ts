@@ -35,7 +35,7 @@ export class MyInquiryPage {
 
         let res: any = data;
         console.log(' agent > ', res);
-        this.InqList = res.data.Agent;
+        this.InqList = res.data.MyInquiry;
 
       }, (error: Response) => {
         this.tools.closeLoader();

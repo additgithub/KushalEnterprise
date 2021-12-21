@@ -30,10 +30,13 @@
                         <ion-label>Upload Machine PDF</ion-label>
                         <ion-img class="menu-img" src="../../../assets/images/upload.png"></ion-img>
                     </div>
-                    <div class="form-group fileuploads">
-                        <ion-input type="file" formControlName='mName' class="file_input"></ion-input>
+
+                    <div class="form-group fileuploads" (click)="uploadImage(1)">
+                        <!-- <ion-input type="file" formControlName='mName' class="file_input"></ion-input> -->
                         <ion-label>Upload Machine Image</ion-label>
                         <ion-img class="menu-img" src="../../../assets/images/upload.png"></ion-img>
+                         <!-- <ion-img class="menu-img"  *ngIf="image1"
+                            src="data:image/png;base64,{{image1}}"></ion-img> -->
                     </div>
                     <div class="button_box">
                         <ion-button class="btn-red" type="submit">Add Machine</ion-button>
