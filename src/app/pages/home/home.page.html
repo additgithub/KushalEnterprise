@@ -150,15 +150,15 @@
                 </ion-row>
             </ion-grid> 
 
-            <ion-grid class="container machine_lists" *ngIf="user.roleid==2">
-                <ion-row class="p-0" *ngFor="let machine of MachineList;" (click)="productlist(machine.MachineID)">
+            <ion-grid class="container machine_lists" *ngFor="let machine of MachineList && user.roleid==2;" (click)="productlist(machine.MachineID)">
+                <ion-row class="p-0" >
                     <ion-col size="12" class="p-0">
                         <div class="img_box" (click)="Part(machine.MachineID)">
                             <ion-img class="ac_img" src="{{machine.MachinePic}}"></ion-img>
                         </div>
                     </ion-col>
                 </ion-row>
-                <ion-row class="box-des" style="align-items: center !important; border: none !important; " >
+                <ion-row class="box-des"  style="align-items: center !important; border: none !important; " >
                     <ion-col class="left_col"> 
                         <ion-label class="d-block">{{machine.MachineName}}</ion-label>
                     </ion-col>
