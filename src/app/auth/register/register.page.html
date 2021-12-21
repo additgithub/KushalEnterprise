@@ -10,69 +10,37 @@
 
             <ion-grid class="info-view">
 
-                <ion-row class="mt-10">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text" placeholder="First Name" style="text-transform: capitalize;" formControlName='fname'></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
+                <div class="form-group">
+                    <ion-input type="text" placeholder="First Name" formControlName='fname' class="form-control"></ion-input>
 
-                <ion-row class="mt-5">
+                </div>
+                <div class="form-group">
+                    <ion-input type="text" placeholder="Last Name" class="form-control" formControlName='lname'></ion-input>
+                </div>
 
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text" placeholder="Last Name" style="text-transform: capitalize;" formControlName='lname' ></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
+                <div class="form-group">
+                    <ion-input type="text" placeholder="Company Name" class="form-control" formControlName='compname'></ion-input>
+                </div>
 
-                <ion-row class="mt-5">
+                <div class="form-group">
+                    <ion-input type="email" placeholder="Email" class="form-control" formControlName='email'></ion-input>
+                </div>
 
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="text" placeholder="Company Name" style="text-transform: capitalize;" formControlName='compname' ></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
+                <div class="form-group">
+                    <ion-input type="tel" maxlength="10" placeholder="Mobile No" class="form-control" formControlName='mobile'></ion-input>
+                </div>
 
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="email" placeholder="Email" style="text-transform: none !important;" formControlName='email'></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
+                <div class="form-group">
+                    <ion-select okText="Ok" placeholder="Select Agent" class="custom_select" cancelText="Dismiss" formControlName='agent' (ionChange)="onChangeState($event.target.value)">
+                        <ion-select-option *ngFor="let item of AgentList" value="{{item.id}}">{{item.agentname}}</ion-select-option>
+                    </ion-select>
+                </div>
 
-                <ion-row class="mt-5">
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-input type="tel" maxlength="10" placeholder="Mobile No" formControlName='mobile'></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
+                <div class="button_box">
+                    <ion-button class="btn-red" type="submit">Register</ion-button>
+                    <ion-button class="btn-trans" (click)="login()">Login</ion-button>
+                </div>
 
-                <ion-row>
-                    <ion-col>
-                        <ion-item class="box-des">
-                            <ion-select class="form-control" okText="Ok" placeholder="Select Agent" cancelText="Dismiss" formControlName='agent' (ionChange)="onChangeState($event.target.value)">
-                                <ion-select-option *ngFor="let item of AgentList" value="{{item.id}}">{{item.agentname}}</ion-select-option>
-                           </ion-select>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-10">
-                    <ion-col>
-                        <ion-button class="btn-red" type="submit">Register</ion-button>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row class="mt-10">
-                    <ion-col>
-                        <ion-button class="btn-trans" (click)="login()">Login</ion-button>
-                    </ion-col>
-                </ion-row>
             </ion-grid>
         </form>
     </div>

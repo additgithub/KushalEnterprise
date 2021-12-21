@@ -45,8 +45,6 @@
     height: 30% !important;
 }
 
-
-
 ion-app {
     // margin-top: env(safe-area-inset-top);
     // margin-bottom: env(safe-area-inset-bottom)
@@ -62,9 +60,10 @@ ion-header {
 }
 
 ion-content {
-	--background: #fff !important;
-	background: #fff !important;
+    --background: #fff !important;
+    background: #fff !important;
 }
+
 .alert-wrapper {
     --width: 90% !important;
     width: 90% !important;
@@ -114,8 +113,6 @@ ion-radio {
     height: auto;
     margin-right: 5px;
 }
-
-
 
 .back {
     width: 30px;
@@ -263,11 +260,27 @@ ion-button {
     border-radius: 5px;
 }
 
+.btn-redd {
+    height: 25px;
+    background: #FF0606;
+    --background: #FF0606;
+    border: 1px solid #FF0606;
+    width: 100%;
+}
+
 .btn-green {
     height: 25px;
     background: #44b201;
     --background: #44b201;
     border: 1px solid #44b201;
+    width: 90%;
+}
+
+.btn-yallow {
+    height: 25px;
+    background: #babd14;
+    --background: #babd14;
+    border: 1px solid #babd14;
     width: 90%;
 }
 
@@ -811,11 +824,11 @@ img.back-btn {
 }
 
 .empty-list {
-	color: #010b17 !important;
-	font-size: 20px !important;
-	text-align: center !important;
-	width: 100%;
-	display: block;
+    color: #010b17 !important;
+    font-size: 20px !important;
+    text-align: center !important;
+    width: 100%;
+    display: block;
 }
 
 .page_had {
@@ -838,12 +851,14 @@ img.back-btn {
     font-size: 14px !important;
     margin: 0px !important;
 }
+
 .box-des {
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
     padding: 8px 10px !important;
 }
+
 .box-des .left_col {
     flex: 0 0 100%;
     max-width: calc(100% - 121px);
@@ -862,7 +877,7 @@ img.back-btn {
     padding-top: 5px !important;
 }
 
-.box-des ion-button{
+.box-des ion-button {
     margin-top: 5px !important;
 }
 
@@ -881,19 +896,21 @@ ion-input {
 }
 
 .search_box {
-	border: 1px solid #d5d5d5;
-	margin: 0px;
-	border-radius: 0px;
-	display: flex;
-	align-items: center;
-	padding: 10px;
-	background-color: #f8f8f8 !important;
-	border-radius: 4px;
+    border: 1px solid #d5d5d5;
+    margin: 0px;
+    border-radius: 0px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f8f8 !important;
+    border-radius: 4px;
 }
+
 .search_box ion-img {
     flex: 0 0 22px;
     max-width: 22px;
 }
+
 .search_box ion-input {
     --padding-top: 3px;
     --padding-end: 0px;
@@ -902,26 +919,29 @@ ion-input {
     color: #000;
 }
 
-
 .action_buttion {
     display: flex;
     justify-content: flex-end;
     margin: 0px -10px;
 }
-.action_buttion  .ac_img {
+
+.action_buttion .ac_img {
     flex: 0 0 39px;
     width: 39px;
     padding: 5px 10px;
 }
+
 .p-0 {
     padding: 0px !important;
 }
-ion-grid.machine_lists{
+
+ion-grid.machine_lists {
     border: 1px solid #d5d5d5;
     margin: 12px;
     overflow: hidden;
     border-radius: 5px;
 }
+
 ion-grid.machine_lists ion-row {
     margin: 0px !important;
 }
@@ -947,16 +967,17 @@ ion-grid.machine_lists ion-row {
     margin: 0 auto;
     border-radius: 50%;
 }
+
 .pro_content ion-label {
     display: block;
     margin: 0px !important;
     padding: 0px !important;
     margin-top: 4px !important;
 }
+
 .pro_content {
     margin-top: 12px;
 }
-
 
 .cimg {
     width: 20px;
@@ -974,33 +995,36 @@ cimg {
     margin: 0 auto;
     text-align: center;
 }
+
 .form-control {
-	--background: #fff;
-	background: #fff;
-	--ion-background-color: transparent;
-	--highlight-color-focused: black;
-	--border-color: transparent;
-	border: 1px solid #d5d5d5;
-	color: #000 !important;
-	font-size: 15px !important;
-	border-radius: 5px;
-	padding: 5px !important;
-	font-family: 'Poppins';
+    --background: #fff;
+    background: #fff;
+    --ion-background-color: transparent;
+    --highlight-color-focused: black;
+    --border-color: transparent;
+    border: 1px solid #d5d5d5;
+    color: #000 !important;
+    font-size: 15px !important;
+    border-radius: 5px;
+    padding: 5px !important;
+    font-family: 'Poppins';
 }
+
 .form-group {
-	margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .button_box ion-button {
-	margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .container {
-	padding: 0px 10px;
+    padding: 0px 10px;
 }
+
 .box-des {
-	margin: 0px !important;
-	margin-bottom: 10px !important;
+    margin: 0px !important;
+    margin-bottom: 10px !important;
 }
 
 .search_compo {
@@ -1012,101 +1036,102 @@ cimg {
 }
 
 .page_wapper {
-	padding: 65px 0;
+    padding: 65px 0;
 }
+
 .list-item {
     cursor: pointer !important;
 }
+
 .lbl-style-m {
-	color: white !important;
-	font-size: 15px !important;
-	font-family: 'Poppins-SemiBold' !important;
+    color: white !important;
+    font-size: 15px !important;
+    font-family: 'Poppins-SemiBold' !important;
     cursor: pointer !important;
 }
 
-
-
 .form-group.fileuploads {
-	border: 1px solid #d5d5d5;
-	color: #000 !important;
-	font-size: 16px !important;
-	border-radius: 5px;
-	padding: 14px 13px !important;
-	display: flex;
-	align-items: center;
-	position: relative;
+    border: 1px solid #d5d5d5;
+    color: #000 !important;
+    font-size: 16px !important;
+    border-radius: 5px;
+    padding: 14px 13px !important;
+    display: flex;
+    align-items: center;
+    position: relative;
     justify-content: space-between;
 }
 
 .form-group.fileuploads ion-label {
-	color: #000 !important;
-	font-size: 15px !important;
-	border-radius: 5px;
-	opacity: 0.5;
-	padding: 0px !important;
+    color: #000 !important;
+    font-size: 15px !important;
+    border-radius: 5px;
+    opacity: 0.5;
+    padding: 0px !important;
 }
 
 .form-group.fileuploads .file_input {
-	position: absolute;
-	top: 0;
-	left: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 11;
-	opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+    opacity: 0;
 }
 
 .form-group.fileuploads .menu-img {
-	padding: 0px !important;
-	margin: 0px !important;
-	flex: 0 0 24px;
-	max-width: 24px;
+    padding: 0px !important;
+    margin: 0px !important;
+    flex: 0 0 24px;
+    max-width: 24px;
 }
 
-
 .custom_select {
-	--background: #fff;
-	background: #fff;
-	--ion-background-color: transparent;
-	--highlight-color-focused: black;
-	--border-color: transparent;
-	border: 1px solid #d5d5d5;
-	color: #000 !important;
-	font-size: 15px !important;
-	border-radius: 5px;
-	padding: 14px 12px !important;
-	font-family: "Poppins";
+    --background: #fff;
+    background: #fff;
+    --ion-background-color: transparent;
+    --highlight-color-focused: black;
+    --border-color: transparent;
+    border: 1px solid #d5d5d5;
+    color: #000 !important;
+    font-size: 15px !important;
+    border-radius: 5px;
+    padding: 14px 12px !important;
+    font-family: "Poppins";
 }
 
 .container.empty-list-box {
-	padding: 200px 10px !important;
+    padding: 200px 10px !important;
 }
 
-
 .form-group.contact_info {
-	border: 1px solid #d5d5d5;
-	border-radius: 5px;
-	padding: 12px;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px;
+    padding: 12px;
 }
 
 .contact_info .content {
-	display: block;
-	margin: 0px;
-	padding: 0px;
-	font-size: 14px !important;
-	color: gray !important;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px !important;
+    color: gray !important;
 }
 
-.contact_info .title, .contact_info .title a {
-	color: #000 !important;
-	font-size: 15px !important;
-	line-height: 19px !important;
+.contact_info .title,
+.contact_info .title a {
+    color: #000 !important;
+    font-size: 15px !important;
+    line-height: 19px !important;
     margin: 0px !important;
-	display: block !important;
+    display: block !important;
 }
+
 .contact_info .title {
-	margin-top: 8px !important;
+    margin-top: 8px !important;
 }
+
 .notification {
     background: red;
     font-size: 12px;
@@ -1123,4 +1148,20 @@ cimg {
     vertical-align: baseline;
     white-space: nowrap;
     position: absolute;
+}
+
+.greencolor {
+    color: #44b201 !important;
+}
+
+.radcolor {
+    color: #FF0606 !important;
+}
+
+.yallowcolor {
+    color: #babd14 !important;
+}
+
+.blackcolor {
+    color: #000 !important;
 }

@@ -25,9 +25,13 @@ export class InquiryDetailsPage {
 
   Selstatus = "";
 
+  user: any;
+  colors = 'blackcolor'
+
   constructor(public tools: Tools, private route: ActivatedRoute,
     public formBuilder: FormBuilder, private eventService: EventService,
     private apiService: ApiService, private router: Router) {
+      this.user = this.apiService.getUserData();
 
     this.route.params
       .subscribe((params) => {
@@ -64,6 +68,19 @@ export class InquiryDetailsPage {
         this.Custname = this.AdminInqDetails[0].fullname
         this.Agentname = this.AdminInqDetails[0].fullname
         this.AlreadySelStatus = this.AdminInqDetails[0].Status
+
+        if(this.AdminInqDetails[0].Status ==="Pending"){
+          this.colors = 'yallowcolor'
+        }
+        if(this.AdminInqDetails[0].Status === "In Progress"){
+          this.colors = 'blackcolor'
+        }
+        if(this.AdminInqDetails[0].Status ==="Completed"){
+          this.colors = 'greencolor'
+        }
+        if(this.AdminInqDetails[0].Status ==="Cancelled"){
+          this.colors = 'radcolor'
+        }
 
       }, (error: Response) => {
         this.tools.closeLoader();

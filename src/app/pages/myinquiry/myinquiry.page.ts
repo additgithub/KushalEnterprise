@@ -13,6 +13,7 @@ import { EventService } from 'src/app/services/EventService';
 export class MyInquiryPage {
 
   InqList = [];
+  colors = 'blackcolor'
 
   constructor(public tools: Tools,private activatedRoute: ActivatedRoute, 
      public formBuilder: FormBuilder,  private eventService:EventService,
@@ -24,8 +25,9 @@ export class MyInquiryPage {
     this.getMyInquiry();
   }
 
-  inquirydetails() {
-    this.router.navigateByUrl('inquirydetails');
+  inquirydetails(inqID) {
+    this.router.navigateByUrl('inquirydetails/' + inqID);
+
   }
   getMyInquiry() {
     if (this.tools.isNetwork()) {
@@ -36,6 +38,25 @@ export class MyInquiryPage {
         let res: any = data;
         console.log(' agent > ', res);
         this.InqList = res.data.MyInquiry;
+
+        for (let i = 0; i < this.InqList.length; i++) {
+        
+          if(this.InqList[i].Status ==="Pending"){
+            this.colors = 'yallowcolor'
+          }
+          if(this.InqList[i].Status === "In Progress"){
+            this.colors = 'blackcolor'
+          }
+          if(this.InqList[i].Status ==="Completed"){
+            this.colors = 'greencolor'
+          }
+          if(this.InqList[i].Status ==="Cancelled"){
+            this.colors = 'radcolor'
+          }
+        }
+
+
+        
 
       }, (error: Response) => {
         this.tools.closeLoader();

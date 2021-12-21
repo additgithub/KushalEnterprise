@@ -29,15 +29,13 @@
             <ion-col size="4">
                 <ion-row style="align-items: center; ">
                     <ion-col style=" text-align:center; padding: 0px; ">
-                        <ion-img class="menu-img" src="../../../assets/images/btnminus.png"
-                            (click)="qty(cart,i, 'min') "></ion-img>
+                        <ion-img class="menu-img" src="../../../assets/images/btnminus.png" (click)="qty(cart,i, 'min') "></ion-img>
                     </ion-col>
                     <ion-col style="text-align:center; padding: 0px;  ">
                         <ion-label>{{cart.qty}}</ion-label>
                     </ion-col>
                     <ion-col style="text-align:center; padding: 0px; ">
-                        <ion-img class="menu-img" src="../../../assets/images/btnplus.png"
-                        (click)="qty(cart,i, 'add') "></ion-img>
+                        <ion-img class="menu-img" src="../../../assets/images/btnplus.png" (click)="qty(cart,i, 'add') "></ion-img>
                     </ion-col>
                 </ion-row>
             </ion-col>
@@ -45,11 +43,14 @@
 
     </ion-list>
 
-    <ion-card-content class="ion-no-padding empty-list-box" *ngIf="cartData == undefined">
-        <ion-label class="empty-list">
-            No Data Available!
-        </ion-label>
-    </ion-card-content>
+
+    <ion-grid class="container empty-list-box" *ngIf="cartData == undefined">
+        <ion-row class="p-0">
+            <ion-col size="12" class="p-0">
+                <ion-label class="empty-list">No Data Available!</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
 </ion-content>
 <ion-row class="mt-10">

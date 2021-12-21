@@ -20,14 +20,14 @@
 
 
 <ion-content>
-    <ion-grid class="container" >
-        <ion-row class="box-des" (click)="inquirydetails()" *ngFor="let inq of InqList ;">
-            <ion-col class="left_col"> 
+    <ion-grid class="container">
+        <ion-row class="box-des" (click)="inquirydetails(inq.InquiryHdrID)" *ngFor="let inq of InqList ;">
+            <ion-col class="left_col">
                 <ion-label class="d-block title f-15">Inquiry No : #{{inq.InqNO}}</ion-label>
                 <ion-label class="content d-block">Inq Date : {{inq.InqDate}}</ion-label>
             </ion-col>
             <ion-col class="right_col">
-                <ion-label class="content d-block" style="color: red !important;">{{inq.Status}}</ion-label>
+                <ion-label [class]="colors">{{inq.Status}}</ion-label>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -38,5 +38,5 @@
                 <ion-label class="empty-list">No Data Available!</ion-label>
             </ion-col>
         </ion-row>
-    </ion-grid>  
+    </ion-grid>
 </ion-content>

@@ -18,6 +18,7 @@ export class ProfilePage {
   loginForm: FormGroup;
   user: any;
   AgentList = [];
+//  selectcategory:any;
 
 
   constructor(public pickerCtrl: PickerController, public tools: Tools, public formBuilder: FormBuilder, private eventService: EventService,
@@ -124,6 +125,20 @@ export class ProfilePage {
         let res: any = data;
         console.log(' agent > ', res);
         this.AgentList = res.data.Agent;
+
+        let index = this.AgentList.findIndex(el => el.id === this.user.agentid)
+        console.log(" agent >>>",index)
+        console.log(" agent >>>",this.user.agentid)
+        console.log(" agent >>>",this.AgentList[index].agentname)
+       // this.selectcategory=this.AgentList[index].agentname;
+
+        if (index == 1) {
+          this.loginForm
+          .get("agent")
+          .setValue(this.AgentList[index].agentname);
+        }
+
+       
 
       }, (error: Response) => {
         this.tools.closeLoader();

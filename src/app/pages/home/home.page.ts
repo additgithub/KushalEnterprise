@@ -26,6 +26,8 @@ export class HomePage {
   class_add = 'img carticon animate'
   cs_count = 'notification'
 
+  colors = 'btn-green'
+
   constructor(private menu: MenuController, public tools: Tools,
     private router: Router, private apiService: ApiService) {
     this.user = this.apiService.getUserData();
@@ -160,6 +162,38 @@ export class HomePage {
         this.AdminInqList = res.data.Inquiry;
         this.ALLAdminInqList = res.data.Inquiry;
 
+
+        // for (let i = 0; i < this.AdminInqList.length; i++) {
+        
+        //   if(this.AdminInqList[i].Status ==="Pending"){
+        //     this.colors = 'btn-yallow'
+        //   }
+        //   if(this.AdminInqList[i].Status === "In Progress"){
+        //     this.colors = 'btn-yallow'
+        //   }
+        //   if(this.AdminInqList[i].Status ==="Completed"){
+        //     this.colors = 'btn-green'
+        //   }
+        //   if(this.AdminInqList[i].Status ==="Cancelled"){
+        //     this.colors = 'btn-redd'
+        //   }
+        // }
+        
+//    for (let i = 0; i < this.AdminInqList.length; i++) {
+        
+//   if(this.AdminInqList[i].Status ==="Pending"){
+//     this.colors = 'yallowcolor'
+//   }
+//   if(this.AdminInqList[i].Status === "In Progress"){
+//     this.colors = 'yallowcolor'
+//   }
+//   if(this.AdminInqList[i].Status ==="Completed"){
+//     this.colors = 'greencolor'
+//   }
+//   if(this.AdminInqList[i].Status ==="Cancelled"){
+//     this.colors = 'radcolor'
+//   }
+// }
       }, (error: Response) => {
         this.tools.closeLoader();
         console.log(error);

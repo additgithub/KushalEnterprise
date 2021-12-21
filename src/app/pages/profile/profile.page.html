@@ -49,8 +49,7 @@
                     </div>
 
                     <div class="form-group" *ngIf="user.roleid==2">
-                        <ion-input type="text" placeholder="Company Name" class="form-control"
-                            formControlName='compname'></ion-input>
+                        <ion-input type="text" placeholder="Company Name" class="form-control" formControlName='compname'></ion-input>
                     </div>
 
                     <div class="form-group">
@@ -59,14 +58,12 @@
                     </div>
 
                     <div class="form-group">
-                        <ion-input type="tel" maxlength="10" placeholder="Mobile No" class="form-control"
-                            formControlName='mobile'></ion-input>
+                        <ion-input type="tel" maxlength="10" placeholder="Mobile No" class="form-control" formControlName='mobile'></ion-input>
                     </div>
 
                     <div class="form-group" *ngIf="user.roleid==2">
-                        <ion-select class="custom_select" okText="Ok" placeholder="Select Agent" cancelText="Dismiss"
-                            formControlName='agent' (ionChange)="onChangeState($event.target.value)" >
-                            <ion-select-option *ngFor="let item of AgentList" value="{{item.id}}" >{{item.agentname}}
+                        <ion-select class="custom_select" okText="Ok" placeholder="Select Agent" cancelText="Dismiss" formControlName='agent'>
+                            <ion-select-option *ngFor="let item of AgentList" value="{{item.id}}">{{item.agentname}}
                             </ion-select-option>
                         </ion-select>
                     </div>
