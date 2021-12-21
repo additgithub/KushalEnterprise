@@ -880,14 +880,15 @@ ion-input {
     margin-bottom: 4px;
 }
 
-
 .search_box {
-    border: 1px solid #d5d5d5;
-    margin: 0px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    padding: 10px;
+	border: 1px solid #d5d5d5;
+	margin: 0px;
+	border-radius: 0px;
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	background-color: #f8f8f8 !important;
+	border-radius: 4px;
 }
 .search_box ion-img {
     flex: 0 0 22px;
