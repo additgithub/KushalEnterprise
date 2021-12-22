@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EventService } from 'src/app/services/EventService';
+import {HTTP} from "@ionic-native/http/ngx";
+import { File } from '@ionic-native/file/ngx';
 
 @Component({
   selector: 'app-productslist',
@@ -23,15 +25,21 @@ export class ProductsListPage {
 
   cartCnt = [];
 
-  constructor(public tools: Tools, private route: ActivatedRoute,
+  MachinePdf='';
+
+  constructor(public tools: Tools, private route: ActivatedRoute,private _nativeHttp: HTTP, private file: File,
     public formBuilder: FormBuilder, private eventService: EventService,
     private apiService: ApiService, private router: Router) {
 
     this.route.params
       .subscribe((params) => {
-        console.log('params =>', params.MachineID);
+        console.log('params =>', params.MachinePdf);
         this.MachineID = params.MachineID;
       });
+      this.MachinePdf = localStorage.getItem("MachinePdf");
+
+        console.log('MachinePdf =>', this.MachinePdf);
+
 
   }
 
@@ -41,6 +49,26 @@ export class ProductsListPage {
     }
     this.getMachineParts();
   }
+ 
+
+  pdf(){
+    this.tools.openLoader();
+        const filePath = this.file.dataDirectory + 'KushalEnterPrise.pdf'; 
+                         // for iOS use this.file.documentsDirectory
+        
+        this._nativeHttp.downloadFile(this.MachinePdf, {}, {}, filePath).then(response => {
+           // prints 200
+           this.tools.closeLoader();
+           console.log('success block...', response);
+        }).catch(err => {
+          this.tools.closeLoader();
+
+            // prints 403
+            console.log('error block ... ', err.status);
+            // prints Permission denied
+            console.log('error block ... ', err.error);
+        })
+}
   
   cart() {
     this.router.navigateByUrl("cart");

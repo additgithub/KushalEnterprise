@@ -16,6 +16,7 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 export class AddMachinePage {
   loginForm: FormGroup;
   image1: any;
+  pdf: any;
 
   constructor(public tools: Tools, private activatedRoute: ActivatedRoute,
     public platform: Platform,
@@ -27,17 +28,11 @@ export class AddMachinePage {
 
     this.loginForm = this.formBuilder.group({
       mName: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
+      // post_image: ['', ],
+      // post_document: ['', ],
     });
   }
 
-  uploadPDF() {
-    if(this.platform.is('ios')){
-      
-  }
-  else{
-      // run android code
-  }
-  }
 
   // For Image
   async uploadImage(type) {
@@ -95,6 +90,10 @@ export class AddMachinePage {
       msg = msg + "Enter your Machine name<br />";
     }
    
+    if(this.pdf == undefined){
+      msg = msg + "Select Machine PDF<br />";
+
+    }
     if(this.image1 == undefined){
       msg = msg + "Select Machine Image<br />";
 
@@ -109,10 +108,10 @@ export class AddMachinePage {
   
             postData.append('MachineName', mName);
             postData.append('MachinePic', this.image1);
-            postData.append('SparePartsURL', '');
+            postData.append('SparePartsURL', this.pdf);
             
             this.tools.openLoader();
-            this.apiService.AddAgent(postData).subscribe(response => {
+            this.apiService.AddMachine(postData).subscribe(response => {
               this.tools.closeLoader();
               let res: any = response;
                console.log('// Api Response ',res);
@@ -139,4 +138,52 @@ export class AddMachinePage {
 
   }
 
+  isPostImageAdd = false;
+  isPostImageEdit = false;
+  onFileChange(event, isEdit=false) {
+    if (event.target.files && event.target.files.length > 0) {
+      
+      const file = event.target.files[0];
+      const fileSizeInKB = Math.round(file.size / 1024);
+      if (fileSizeInKB >= 5012) {
+          //this.toastr.error("Allow only 5 mb image size", "Error");
+          return;
+      }
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      if(isEdit){
+        this.isPostImageEdit = true;
+        //this.PEditControl.post_image.setValue(file);
+      }else{
+        this.isPostImageAdd = true;
+        //this.control.post_image.setValue(file);
+       this.image1=file;
+        
+      }
+    }
+  }
+
+  
+  isPostDocAdd = false;
+  isPostDocEdit = false;
+  onDocChange(event, isEdit=false){
+    if (event.target.files && event.target.files.length > 0) {
+      const files = event.target.files[0];
+      const fileSizeInKB = Math.round(files.size / 1024);
+      console.log("files >>"+files);
+      console.log("fileSizeInKB >>"+fileSizeInKB);
+      if (fileSizeInKB >= 10025) {
+          //this.toastr.error("Allow only 10 mb document size", "Error");
+          return;
+      }
+      if(isEdit){
+        this.isPostDocEdit = true;
+        //this.PEditControl.post_document.setValue(files);
+      }else{
+        this.isPostDocAdd = true;
+        //this.control.post_document.setValue(files);
+        this.pdf=files;
+      }
+    }
+  }
 }

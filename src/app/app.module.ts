@@ -21,13 +21,17 @@ import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import {HTTP} from "@ionic-native/http/ngx";
+import { File } from '@ionic-native/file/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule,FormsModule, IonicModule.forRoot({mode:'md', scrollAssist: false}), HttpClientModule,AppRoutingModule,],
   providers: [
-    StatusBar,Network, EventService, AuthGuard, WelcomeGuard,Camera,ImagePicker,
+    StatusBar,Network, EventService, AuthGuard, WelcomeGuard,Camera,ImagePicker,WebView,HTTP,File,
+
     SplashScreen,Device,AppVersion,Clipboard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     OneSignal],

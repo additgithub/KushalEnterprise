@@ -142,23 +142,23 @@ export class Tools {
         return strTime;
     }
 
-    async openLoader(cssClass = '', msg?) {
-        // console.log(' ===> ',msg);
-        this.loading = await this.loadingController.create({
-            message: msg ? msg : 'Please wait...',
-            keyboardClose: true,
-            showBackdrop: true,
-            cssClass: cssClass
-        });
-        await this.loading.present();
-        await this.loading.present();
-        setTimeout(() => {
-            if (this.loading) {
-                this.loading.dismiss();
-            }
-        }, 8000);
-    }
-    async CustomeopenLoader(msg?, time?) {
+    // async openLoader(cssClass = '', msg?) {
+    //     // console.log(' ===> ',msg);
+    //     this.loading = await this.loadingController.create({
+    //         message: msg ? msg : 'Please wait...',
+    //         keyboardClose: true,
+    //         showBackdrop: true,
+    //         cssClass: cssClass
+    //     });
+    //     await this.loading.present();
+    //     await this.loading.present();
+    //     setTimeout(() => {
+    //         if (this.loading) {
+    //             this.loading.dismiss();
+    //         }
+    //     }, 8000);
+    // }
+    async openLoader(msg?, time?) {
         // console.log(' ===> ',msg);
         //  time = time ? 1500:8000
         //   await this.closeLoader();

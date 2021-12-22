@@ -35,6 +35,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/myinquiry/myinquiry.module').then(m => m.MyInquiryPageModule)
   },
   {
+    path: 'adduser',
+    loadChildren: () => import('./pages/adduser/adduser.module').then(m => m.AddUserPageModule)
+  },
+  {
     path: 'inquirydetails/:inqID',
     loadChildren: () => import('./pages/inquirydetails/inquirydetails.module').then(m => m.InquiryDetailsPageModule)
   },

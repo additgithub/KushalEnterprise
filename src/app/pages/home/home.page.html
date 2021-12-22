@@ -3,7 +3,7 @@
         <div class="siderbar_header" (click)="Profile()">
             <ion-row class="user-info-block">
                 <ion-col size="3" class="user-img">
-                    <ion-label style="text-align: center !important;color: red !important; margin-top: 20px; ">
+                    <ion-label style="text-align: center !important;color: red !important; margin-top: 20px;">
                         {{user.username.charAt(0).toUpperCase()}}</ion-label>
                 </ion-col>
                 <ion-col size="9" class="user-info">
@@ -56,6 +56,11 @@
                 <ion-label class="lbl-style-m">My Inquiry</ion-label>
             </ion-item>
 
+            <ion-item class="list-item" (click)="AddUser()" *ngIf="user.roleid==3">
+                <ion-img class="menu-img" src="../../../assets/images/user.png"></ion-img>
+                <ion-label class="lbl-style-m">Add user</ion-label>
+            </ion-item>
+
             <ion-item class="list-item" (click)="Profile()">
                 <ion-img class="menu-img" src="../../../assets/images/user.png"></ion-img>
                 <ion-label class="lbl-style-m">My Profile</ion-label>
@@ -103,15 +108,8 @@
     </ion-header>
 
     <ion-content style="background: #fff">
+        <!-- Search For Admin/User/Agent -->
         <ion-grid class="container search_compo">
-            <ion-row style="padding: 0;" *ngIf="user.roleid==2">
-                <ion-col style="padding: 0;" size='12'>
-                    <div class="search_box">
-                        <ion-img class="search_icon" src="../../../assets/images/search.png"></ion-img>
-                        <ion-input type="search" placeholder="Search Machine" [(ngModel)]="machineName" (ionChange)="ionChangeUser()"></ion-input>
-                    </div>
-                </ion-col>
-            </ion-row>
             <ion-row style="padding: 0;" *ngIf="user.roleid==1">
                 <ion-col style="padding: 0;" size='12'>
                     <div class="search_box">
@@ -120,9 +118,29 @@
                     </div>
                 </ion-col>
             </ion-row>
+
+            <ion-row style="padding: 0;" *ngIf="user.roleid==2">
+                <ion-col style="padding: 0;" size='12'>
+                    <div class="search_box">
+                        <ion-img class="search_icon" src="../../../assets/images/search.png"></ion-img>
+                        <ion-input type="search" placeholder="Search Machine" [(ngModel)]="machineName" (ionChange)="ionChangeUser()"></ion-input>
+                    </div>
+                </ion-col>
+            </ion-row>
+
+
+            <ion-row style="padding: 0;" *ngIf="user.roleid==3">
+                <ion-col style="padding: 0;" size='12'>
+                    <div class="search_box">
+                        <ion-img class="search_icon" src="../../../assets/images/search.png"></ion-img>
+                        <ion-input type="search" placeholder="Search Inquiry" [(ngModel)]="fullname" (ionChange)="ionChangeAgent()"></ion-input>
+                    </div>
+                </ion-col>
+            </ion-row>
         </ion-grid>
 
         <div class="page_wapper">
+            <!-- Data List For Admin -->
             <ion-grid class="container" *ngIf="user.roleid==1">
                 <ion-row class="box-des" *ngFor="let inq of AdminInqList ; let i=index;" (click)="adminInquiry(inq.InquiryHdrID)">
                     <ion-col class="left_col">
@@ -130,7 +148,8 @@
                         <ion-label class="content d-block">Inq Date : {{inq.InqDate}}</ion-label>
                     </ion-col>
                     <ion-col class="right_col">
-                        <ion-button class="btn-green">{{inq.Status}}</ion-button>
+
+                        <ion-button [ngClass]="{'btn-yallow': inq.Status === 'Pending', 'btn-orange' : inq.Status === 'In Progress','btn-green' : inq.Status === 'Completed','btn-redd' : inq.Status === 'Cancelled' }">{{inq.Status}}</ion-button>
                         <!-- <ion-label [class]="colors">{{inq.Status}}</ion-label> -->
 
                     </ion-col>
@@ -138,7 +157,7 @@
                         <ion-label class="content d-block">Customer : {{inq.fullname}}</ion-label>
                     </ion-col>
                     <ion-col class="right_col">
-                        <ion-label class="content">Agent : Test</ion-label>
+                        <ion-label class="content">Agent : {{inq.agentname}}</ion-label>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -151,7 +170,9 @@
                 </ion-row>
             </ion-grid>
 
-            <ion-grid class="container machine_lists" *ngFor="let machine of MachineList ; ngIf user.roleid==2;" (click)="productlist(machine.MachineID)">
+            <!-- Data List For User -->
+
+            <ion-grid class="p-0 machine_lists" *ngFor="let machine of MachineList ; ngIf user.roleid==2;" (click)="productlist(machine.MachineID,machine.MachinePdf)">
                 <ion-row class="p-0">
                     <ion-col size="12" class="p-0">
                         <div class="img_box">
@@ -178,6 +199,36 @@
                     </ion-col>
                 </ion-row>
             </ion-grid>
+
+            <!-- Data List For Agent -->
+            <ion-grid class="container" *ngIf="user.roleid==3">
+                <ion-row class="box-des" *ngFor="let inq of AgentInqList ;" (click)="adminInquiry(inq.InquiryHdrID)">
+                    <ion-col class="left_col">
+                        <ion-label class="d-block title f-15">Inquiry No. : # {{inq.InqNO}}</ion-label>
+                        <ion-label class="content d-block">Inq Date : {{inq.InqDate}}</ion-label>
+                    </ion-col>
+                    <ion-col class="right_col">
+                        <!-- <ion-button class="btn-green">{{inq.Status}}</ion-button> -->
+                        <!-- <ion-label [class]="colors">{{inq.Status}}</ion-label> -->
+                        <ion-button [ngClass]="{'btn-yallow': inq.Status === 'Pending', 'btn-orange' : inq.Status === 'In Progress','btn-green' : inq.Status === 'Completed','btn-redd' : inq.Status === 'Cancelled' }">{{inq.Status}}</ion-button>
+
+                    </ion-col>
+                    <ion-col class="left_col">
+                        <ion-label class="content d-block">Customer : {{inq.fullname}}</ion-label>
+                    </ion-col>
+
+                </ion-row>
+            </ion-grid>
+
+            <ion-grid class="container empty-list-box" *ngIf="AgentInqList?.length == 0 && user.roleid==3">
+                <ion-row class="p-0">
+                    <ion-col size="12" class="p-0">
+                        <ion-label class="empty-list">No Data Available!</ion-label>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+
         </div>
     </ion-content>
 </ion-router-outlet>

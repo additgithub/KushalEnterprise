@@ -128,7 +128,6 @@ img {
     font-size: 16px;
     color: #fff !important;
     font-family: 'Poppins-SemiBold';
-
 }
 
 .icons-mail {
@@ -190,6 +189,7 @@ img {
     text-decoration: underline;
     line-height: 15px;
 }
+
 .user-img {
     width: 70px !important;
     height: 70px !important;
@@ -214,19 +214,20 @@ img {
     margin: 4px auto !important;
     color: #000 !important;
     line-height: 58px;
-    font-size: 18px !important;
+    font-size: 30px !important;
+    font-family: "Poppins-SemiBold";
 }
-ion-item{
+
+ion-item {
     --inner-border-width: 0 0 0px 0;
 }
 
 .btn-green {
-	width: 100%;
+    width: 100%;
 }
 
-
 .siderbar_header {
-	padding: 0px 10px;
-	background: #e31e24;
-	padding-bottom: 10px;
+    padding: 0px 10px;
+    background: #e31e24;
+    padding-bottom: 10px;
 }

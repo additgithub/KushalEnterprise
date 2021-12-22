@@ -262,26 +262,34 @@ ion-button {
 
 .btn-redd {
     height: 25px;
-    background: #FF0606;
-    --background: #FF0606;
-    border: 1px solid #FF0606;
+    background: red;
+    --background: red;
+    border: 1px solid red;
     width: 100%;
 }
 
 .btn-green {
     height: 25px;
-    background: #44b201;
-    --background: #44b201;
-    border: 1px solid #44b201;
-    width: 90%;
+    background: green;
+    --background: green;
+    border: 1px solid green;
+    width: 100%;
+}
+
+.btn-orange {
+    height: 25px;
+    background: orange;
+    --background: orange;
+    border: 1px solid orange;
+    width: 100%;
 }
 
 .btn-yallow {
     height: 25px;
-    background: #babd14;
-    --background: #babd14;
-    border: 1px solid #babd14;
-    width: 90%;
+    background: #dddd26;
+    --background: #dddd26;
+    border: 1px solid #dddd26;
+    width: 100%;
 }
 
 .qty-btn {
@@ -1135,8 +1143,8 @@ cimg {
 .notification {
     background: red;
     font-size: 12px;
-    top: -9px;
-    left: 10px;
+    top: -7px;
+    left: 9px;
     z-index: 10;
     border-radius: 100%;
     color: #fff;
@@ -1151,17 +1159,36 @@ cimg {
 }
 
 .greencolor {
-    color: #44b201 !important;
+    color: green !important;
 }
 
 .radcolor {
-    color: #FF0606 !important;
+    color: red !important;
 }
 
 .yallowcolor {
-    color: #babd14 !important;
+    color: #dddd26 !important;
 }
 
-.blackcolor {
-    color: #000 !important;
+.orangecolor {
+    color: orange !important;
+}
+
+.img_box {
+    position: relative;
+    overflow: hidden;
+    height: 130px;
+    width: 100%;
+    background-color: #d5d5d5;
+}
+
+.img_box ion-img {
+    /* max-width: 100%; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    /* max-height: 100%; */
+    width: 100%;
 }

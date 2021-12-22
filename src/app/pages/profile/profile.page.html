@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="form-group" *ngIf="user.roleid==2">
-                        <ion-select class="custom_select" okText="Ok" placeholder="Select Agent" cancelText="Dismiss" formControlName='agent'>
+                        <ion-select class="custom_select" [(ngModel)]="Selstatus" [value]="Selstatus" okText="Ok" placeholder="Select Agent" cancelText="Dismiss" formControlName='agent'>
                             <ion-select-option *ngFor="let item of AgentList" value="{{item.id}}">{{item.agentname}}
                             </ion-select-option>
                         </ion-select>

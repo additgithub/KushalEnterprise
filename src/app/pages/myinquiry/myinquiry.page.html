@@ -27,7 +27,8 @@
                 <ion-label class="content d-block">Inq Date : {{inq.InqDate}}</ion-label>
             </ion-col>
             <ion-col class="right_col">
-                <ion-label [class]="colors">{{inq.Status}}</ion-label>
+                <ion-label [ngClass]="{'yallowcolor': inq.Status === 'Pending', 'orangecolor' : inq.Status === 'In Progress','greencolor' : inq.Status === 'Completed','radcolor' : inq.Status === 'Cancelled' }">{{inq.Status}}</ion-label>
+
             </ion-col>
         </ion-row>
     </ion-grid>

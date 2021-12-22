@@ -12,7 +12,7 @@
                         </div>
                     </ion-col>
                     <ion-col size="1">
-                        <ion-buttons no-padding (click)="pdf()">
+                        <ion-buttons no-padding (click)="pdf()" *ngIf="MachinePdf!=''">
                             <ion-img src="../../../assets/images/pdf.png"> </ion-img>
                         </ion-buttons>
                     </ion-col>
@@ -44,7 +44,7 @@
     <div class="page_wapper">
         <ion-grid class="container">
             <ion-row class="box-des" *ngFor="let part of PartsList ;let i=index;">
-                <ion-col class="left_col"> 
+                <ion-col class="left_col">
                     <ion-label class="d-block title f-15">{{part.MachineName}}</ion-label>
                     <ion-label class="content d-block">{{part.PartsName}}</ion-label>
                     <ion-label class="content d-block">{{part.PartsNo}}</ion-label>
@@ -52,16 +52,14 @@
                 <ion-col class="right_col">
                     <ion-row style="align-items: center; ">
                         <ion-col style=" text-align:center; padding: 0px; ">
-                            <ion-img class="menu-img" src="../../../assets/images/btnminus.png"
-                                (click)="qty(part,i, 'min') "></ion-img>
+                            <ion-img class="menu-img" src="../../../assets/images/btnminus.png" (click)="qty(part,i, 'min') "></ion-img>
                             <!-- <ion-button class="qty-btn " (click)="qty(catItem,i, 'min') ">-</ion-button> -->
                         </ion-col>
                         <ion-col style="text-align:center; padding: 0px;  ">
                             <ion-label>{{part.qty}}</ion-label>
                         </ion-col>
                         <ion-col style="text-align:center; padding: 0px; ">
-                            <ion-img class="menu-img" src="../../../assets/images/btnplus.png"
-                                (click)="qty(part,i, 'add') "></ion-img>
+                            <ion-img class="menu-img" src="../../../assets/images/btnplus.png" (click)="qty(part,i, 'add') "></ion-img>
                             <!-- <ion-button class="qty-btn " (click)="qty(catItem,i, 'add') ">+</ion-button> -->
                         </ion-col>
                     </ion-row>
@@ -69,12 +67,12 @@
             </ion-row>
         </ion-grid>
 
-        <ion-grid class="container empty-list-box"  *ngIf="PartsList?.length == 0">
+        <ion-grid class="container empty-list-box" *ngIf="PartsList?.length == 0">
             <ion-row class="p-0">
                 <ion-col size="12" class="p-0">
                     <ion-label class="empty-list">No Data Available!</ion-label>
                 </ion-col>
             </ion-row>
-        </ion-grid>   
-    </div>         
+        </ion-grid>
+    </div>
 </ion-content>

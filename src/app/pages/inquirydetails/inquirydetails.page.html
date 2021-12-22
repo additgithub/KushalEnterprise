@@ -9,7 +9,7 @@
                             <ion-buttons (click)="tools.backPage()" no-padding>
                                 <ion-img class="img" src="../../../assets/images/back.png"></ion-img>
                             </ion-buttons>
-                            <ion-label class="page_title">My Inquiry Details</ion-label>
+                            <ion-label class="page_title">Inquiry Details</ion-label>
                         </div>
                     </ion-col>
                 </ion-row>
@@ -19,22 +19,20 @@
 </ion-header>
 
 
-
-
 <ion-content style="background: #fff">
     <ion-grid class="container">
         <ion-row class="box-des">
             <ion-col class="left_col">
                 <ion-label class="d-block title f-15">Inquiry No. : # {{InqNO}}</ion-label>
                 <ion-label class="content d-block">Inq Date : {{InqDate}}</ion-label>
-                <ion-label class="content d-block" *ngIf="user.roleid==1">Customer : {{Custname}}</ion-label>
+                <ion-label class="content d-block" *ngIf="user.roleid==1 ||user.roleid==3">Customer : {{Custname}}</ion-label>
                 <ion-label class="content d-block" *ngIf="user.roleid==1">Agent : {{Agentname}}</ion-label>
-                <ion-label [class]="colors" *ngIf="user.roleid==2">{{AlreadySelStatus}}</ion-label>
+                <ion-label [class]="colors" *ngIf="user.roleid==2 ||user.roleid==3 ">{{AlreadySelStatus}}</ion-label>
             </ion-col>
-            <ion-col class="right_col" *ngIf="user.roleid==1">
+            <ion-col class="right_col" *ngIf="user.roleid==1 ">
                 <div class="select_box">
-                    <ion-select okText="Ok" placeholder="Select Status" cancelText="Dismiss" class="custom_select" (ionChange)="onChangeState($event.target.value)">
-                        <ion-select-option *ngFor="let item of StatusList">{{item.Status}}</ion-select-option>
+                    <ion-select okText="Ok" [(ngModel)]="Selstatus" [value]="Selstatus" placeholder="Select Status" cancelText="Dismiss" class="custom_select" (ionChange)="onChangeState($event.target.value)">
+                        <ion-select-option *ngFor="let item of StatusList" [value]="item.Status">{{item.Status}}</ion-select-option>
                     </ion-select>
                 </div>
                 <ion-button class="btn-red" (click)="accept()">Save</ion-button>

@@ -22,11 +22,16 @@ export class HomePage {
   ALLMachineList = [];
   machineName = "";
 
-  sumCart = 0
+   //For Agent
+   AgentInqList = [];
+   ALLAgentInqList = [];
+   Inqname = "";
+
+
+  sumCart = 0;
   class_add = 'img carticon animate'
   cs_count = 'notification'
 
-  colors = 'btn-green'
 
   constructor(private menu: MenuController, public tools: Tools,
     private router: Router, private apiService: ApiService) {
@@ -44,6 +49,8 @@ export class HomePage {
   ionViewDidEnter() {
     if(this.apiService.getCartData()!=undefined){
       this.sumCart = this.apiService.getCartData().reduce((a, b) => a + b.qty, 0);
+    }else{
+      this.sumCart =0;
     }
     this.user = this.apiService.getUserData();
 
@@ -53,6 +60,9 @@ export class HomePage {
     if (this.user.roleid === '2') {
       this.getMachineList();
     }
+    if (this.user.roleid === '3') {
+      this.getAgentInquiryList();
+    }
   }
 
   openFirst() {
@@ -60,10 +70,11 @@ export class HomePage {
     this.menu.open("first");
   }
 
-  productlist(MachineID) {
+  productlist(MachineID,MachinePdf) {
     this.router.navigateByUrl("productslist/"+MachineID);
-
+    localStorage.setItem("MachinePdf",MachinePdf);
   }
+
   cart() {
     this.router.navigateByUrl("cart");
   }
@@ -79,6 +90,12 @@ export class HomePage {
     this.menu.close();
     this.router.navigateByUrl("myinquiry");
   }
+
+  AddUser() {
+    this.menu.close();
+    this.router.navigateByUrl("adduser");
+  }
+
   Profile() {
     this.menu.close();
     this.router.navigateByUrl("profile");
@@ -107,6 +124,7 @@ export class HomePage {
     this.menu.close();
     this.router.navigateByUrl("agent");
   }
+
   Machine() {
     this.menu.close();
     this.router.navigateByUrl("machinelist");
@@ -116,16 +134,19 @@ export class HomePage {
     this.menu.close();
     this.router.navigateByUrl("addmachine");
   }
+
   addMachinePart() {
     this.menu.close();
     this.router.navigateByUrl("addparts");
   }
+
   adminInquiry(inqID) {
     console.log("ID >>", inqID)
     this.menu.close();
     this.router.navigateByUrl('inquirydetails/' + inqID);
 
   }
+   // For User Data
 
   getMachineList() {
     if (this.tools.isNetwork()) {
@@ -151,6 +172,8 @@ export class HomePage {
     }
 
   }
+   // For Admin Data
+
   getAdminInquiryList() {
     if (this.tools.isNetwork()) {
       this.tools.openLoader();
@@ -162,38 +185,6 @@ export class HomePage {
         this.AdminInqList = res.data.Inquiry;
         this.ALLAdminInqList = res.data.Inquiry;
 
-
-        // for (let i = 0; i < this.AdminInqList.length; i++) {
-        
-        //   if(this.AdminInqList[i].Status ==="Pending"){
-        //     this.colors = 'btn-yallow'
-        //   }
-        //   if(this.AdminInqList[i].Status === "In Progress"){
-        //     this.colors = 'btn-yallow'
-        //   }
-        //   if(this.AdminInqList[i].Status ==="Completed"){
-        //     this.colors = 'btn-green'
-        //   }
-        //   if(this.AdminInqList[i].Status ==="Cancelled"){
-        //     this.colors = 'btn-redd'
-        //   }
-        // }
-        
-//    for (let i = 0; i < this.AdminInqList.length; i++) {
-        
-//   if(this.AdminInqList[i].Status ==="Pending"){
-//     this.colors = 'yallowcolor'
-//   }
-//   if(this.AdminInqList[i].Status === "In Progress"){
-//     this.colors = 'yallowcolor'
-//   }
-//   if(this.AdminInqList[i].Status ==="Completed"){
-//     this.colors = 'greencolor'
-//   }
-//   if(this.AdminInqList[i].Status ==="Cancelled"){
-//     this.colors = 'radcolor'
-//   }
-// }
       }, (error: Response) => {
         this.tools.closeLoader();
         console.log(error);
@@ -208,7 +199,34 @@ export class HomePage {
 
   }
 
-  // For Admin Filter
+    // For Agent Data
+
+    getAgentInquiryList() {
+      if (this.tools.isNetwork()) {
+        this.tools.openLoader();
+        this.apiService.AgentInqList().subscribe(data => {
+          this.tools.closeLoader();
+  
+          let res: any = data;
+          console.log(' Response ', res);
+          this.AgentInqList = res.data.Inquiry;
+          this.ALLAgentInqList = res.data.Inquiry;
+  
+        }, (error: Response) => {
+          this.tools.closeLoader();
+          console.log(error);
+  
+          let err: any = error;
+          this.tools.openAlertToken(err.status, err.error.message);
+        });
+  
+      } else {
+        this.tools.closeLoader();
+      }
+  
+    }
+
+  // For User Filter
   async ionChangeUser() {
     console.log("click >>", this.machineName)
     this.MachineList = await this.ALLMachineList;
@@ -239,4 +257,19 @@ export class HomePage {
     });
   }
 
+   // For Agent Filter
+   async ionChangeAgent() {
+    console.log("click >>", this.fullname)
+    this.AgentInqList = await this.ALLAgentInqList;
+    const searchTerm = this.fullname;
+    if (!searchTerm) {
+      return;
+    }
+
+    this.AgentInqList = this.AgentInqList.filter(currentDraw => {
+      if (currentDraw.fullname && searchTerm) {
+        return ((currentDraw.fullname.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) || (currentDraw.Status.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) || (currentDraw.InqNO.indexOf(searchTerm.toLowerCase()) > -1));
+      }
+    });
+  }
 }

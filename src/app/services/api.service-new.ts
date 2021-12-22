@@ -163,12 +163,39 @@ export class ApiService {
     postData.append("agentid", agent);
     postData.append("device_token", this.device_id);
     postData.append("player_id", dID);
+    postData.append("roleid", "2");
+    return this.http.post(environment.BaseUrl + 'auth/customer_register', postData, httpOptions);
+  }
+  AddUser(fname,lname,compname,email,mobile,agent): any {
+
+    var httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': this.bacisAuth,
+        'KUSHAL-API-KEY': environment.apikey,
+      })
+    }
+
+    let postData = new FormData();
+    postData.append("first_name", fname);
+    postData.append("last_name", lname);
+    postData.append("company_name", compname);
+    postData.append("email", email);
+    postData.append("phone", mobile);
+    postData.append("agentid", agent);
+    postData.append("device_token",'');
+    postData.append("player_id", "");
+    postData.append("roleid", "3");
     return this.http.post(environment.BaseUrl + 'auth/customer_register', postData, httpOptions);
   }
 
   AdminInqList(): any {
     this.setHeaderData();
     return this.http.get(environment.BaseUrl + 'dashboard', this.httpOptions);
+  }
+  AgentInqList(): any {
+    this.setHeaderData();
+    return this.http.get(environment.BaseUrl + 'agent/agentinquiryfor', this.httpOptions);
   }
  
   AgentList(): any {
@@ -217,6 +244,10 @@ export class ApiService {
   AddAgent(Data): any {
     this.setHeaderData();
     return this.http.post(environment.BaseUrl + 'agent', Data, this.httpOptions);
+  }
+  AddMachine(Data): any {
+    this.setHeaderData();
+    return this.http.post(environment.BaseUrl + 'machine', Data, this.httpOptions);
   }
   EditSaveAgent(Data): any {
     this.setHeaderData();

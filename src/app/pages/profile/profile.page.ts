@@ -20,6 +20,7 @@ export class ProfilePage {
   AgentList = [];
 //  selectcategory:any;
 
+Selstatus = "";
 
   constructor(public pickerCtrl: PickerController, public tools: Tools, public formBuilder: FormBuilder, private eventService: EventService,
     private activatedRoute: ActivatedRoute, private router: Router, public apiService: ApiService) {
@@ -30,7 +31,7 @@ export class ProfilePage {
       fname: [this.user.first_name, [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       lname: [this.user.last_name, [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       compname: [this.user.company_name, [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      agent: ['', [Validators.required]],
+      agent: [this.user.agentid, [Validators.required]],
       mobile: [this.user.phone, [Validators.required, Validators.maxLength(10), Validators.pattern('[0-9]+')]],
       email: [this.user.email, [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
 
@@ -126,19 +127,11 @@ export class ProfilePage {
         console.log(' agent > ', res);
         this.AgentList = res.data.Agent;
 
-        let index = this.AgentList.findIndex(el => el.id === this.user.agentid)
-        console.log(" agent >>>",index)
-        console.log(" agent >>>",this.user.agentid)
-        console.log(" agent >>>",this.AgentList[index].agentname)
-       // this.selectcategory=this.AgentList[index].agentname;
 
-        if (index == 1) {
-          this.loginForm
-          .get("agent")
-          .setValue(this.AgentList[index].agentname);
-        }
-
-       
+        this.loginForm
+        .get("agent")
+        .setValue(this.user.agentid);
+     
 
       }, (error: Response) => {
         this.tools.closeLoader();

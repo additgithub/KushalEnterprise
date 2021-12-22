@@ -26,7 +26,7 @@ export class InquiryDetailsPage {
   Selstatus = "";
 
   user: any;
-  colors = 'blackcolor'
+  colors = ''
 
   constructor(public tools: Tools, private route: ActivatedRoute,
     public formBuilder: FormBuilder, private eventService: EventService,
@@ -41,7 +41,8 @@ export class InquiryDetailsPage {
 
   }
   ionViewDidEnter() {
-    this.getAdminInquiryDetail();
+    this.getStatusList();
+
   }
   onChangeState(agent) {
     this.Selstatus = agent;
@@ -57,7 +58,6 @@ export class InquiryDetailsPage {
       this.tools.openLoader();
       this.apiService.AdminInqDetail(postData).subscribe(data => {
         this.tools.closeLoader();
-        this.getStatusList();
 
         let res: any = data;
         console.log(' Response ', res);
@@ -66,14 +66,18 @@ export class InquiryDetailsPage {
         this.InqNO = this.AdminInqDetails[0].InqNO
         this.InqDate = this.AdminInqDetails[0].InqDate
         this.Custname = this.AdminInqDetails[0].fullname
-        this.Agentname = this.AdminInqDetails[0].fullname
+        this.Agentname = this.AdminInqDetails[0].agentname
         this.AlreadySelStatus = this.AdminInqDetails[0].Status
+        
+        this.Selstatus = this.AlreadySelStatus;
+        console.log("Selstatus >>",this.Selstatus);
+        console.log("AlreadySelStatus >>",this.AlreadySelStatus);
 
         if(this.AdminInqDetails[0].Status ==="Pending"){
           this.colors = 'yallowcolor'
         }
         if(this.AdminInqDetails[0].Status === "In Progress"){
-          this.colors = 'blackcolor'
+          this.colors = 'orangecolor'
         }
         if(this.AdminInqDetails[0].Status ==="Completed"){
           this.colors = 'greencolor'
@@ -104,7 +108,8 @@ export class InquiryDetailsPage {
         let res: any = data;
         console.log(' Response ', res);
         this.StatusList = res.data.Status;
-        
+        this.getAdminInquiryDetail();
+
 
       }, (error: Response) => {
         this.tools.closeLoader();
