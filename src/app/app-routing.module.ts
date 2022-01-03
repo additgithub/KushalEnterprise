@@ -65,6 +65,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/addmachine/addmachine.module').then(m => m.AddMachinePageModule)
   },
   {
+    path: 'editmachine/:MachineID/:MachineName',
+    loadChildren: () => import('./pages/editmachine/editmachine.module').then(m => m.EditMachinePageModule)
+  },
+  {
     path: 'addparts',
     loadChildren: () => import('./pages/addparts/addparts.module').then(m => m.AddPartsPageModule)
   },

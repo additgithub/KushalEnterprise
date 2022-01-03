@@ -146,5 +146,6 @@ Selstatus = "";
     }
 
   }
+  isReadonly() {return true;}
 
 }

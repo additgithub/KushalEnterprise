@@ -27,12 +27,12 @@
 </ion-header>
 
 <ion-content style="background: #fff">
-    <ion-grid class="container search_compo">
+    <ion-grid class="container search_compo" *ngIf="PartsList?.length != 0">
         <ion-row style="padding: 0;">
             <ion-col style="padding: 0;" size='12'>
                 <div class="search_box">
                     <ion-img class="search_icon" src="../../../assets/images/search.png"></ion-img>
-                    <ion-input type="search"  placeholder="Search by Part Name / Part No." [(ngModel)]="PartsName" (ionChange)="ionChange()"></ion-input>
+                    <ion-input type="search" placeholder="Search by Part Name / Part No." [(ngModel)]="PartsName" (ionChange)="ionChange()"></ion-input>
                 </div>
             </ion-col>
         </ion-row>
@@ -40,26 +40,27 @@
 
     <div class="page_wapper">
         <ion-grid class="container">
-            <ion-row class="box-des"  *ngFor="let part of PartsList;">
-                <ion-col class="left_col"> 
+            <ion-row class="box-des" *ngFor="let part of PartsList;">
+                <ion-col class="left_col">
                     <ion-label class="d-block title f-15">{{part.MachineName}}</ion-label>
                     <ion-label class="d-block">{{part.PartsName}}</ion-label>
                     <ion-label>{{part.PartsNo}}</ion-label>
                 </ion-col>
-                <ion-col class="right_col"> 
+                <ion-col class="right_col">
                     <div class="action_buttion">
                         <ion-img class="ac_img" src="../../../assets/images/edit.png" (click)="EditPart(part)"></ion-img>
                         <ion-img class="ac_img" src="../../../assets/images/delete.png" (click)="DeletePart(part.MachinePartsID)"></ion-img>
-                    </div>            
+                    </div>
                 </ion-col>
             </ion-row>
         </ion-grid>
+
         <ion-grid class="container empty-list-box" *ngIf="PartsList?.length == 0">
             <ion-row class="p-0">
                 <ion-col size="12" class="p-0">
                     <ion-label class="empty-list">No Data Available!</ion-label>
                 </ion-col>
             </ion-row>
-        </ion-grid>   
-    </div>  
+        </ion-grid>
+    </div>
 </ion-content>

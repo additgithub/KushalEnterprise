@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="form-group">
-                        <ion-input type="tel" maxlength="10" placeholder="Mobile No" class="form-control" formControlName='mobile'></ion-input>
+                        <ion-input type="tel" style="color: gray !important;" [readonly]="isReadonly" maxlength="10" placeholder="Mobile No" class="form-control" formControlName='mobile'></ion-input>
                     </div>
 
                     <div class="form-group" *ngIf="user.roleid==2">

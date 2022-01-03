@@ -35,24 +35,24 @@
                 </div>
             </ion-col>
         </ion-row>
-        <ion-row class="box-des" style="align-items: center !important; border: none !important; " >
-            <ion-col class="left_col"> 
+        <ion-row class="box-des" style="align-items: center !important; border: none !important; ">
+            <ion-col class="left_col">
                 <ion-label class="d-block">{{machine.MachineName}}</ion-label>
             </ion-col>
-            <ion-col class="right_col"> 
+            <ion-col class="right_col">
                 <div class="action_buttion">
-                    <ion-img class="ac_img" src="../../../assets/images/edit.png" (click)="medit()"></ion-img>
+                    <ion-img class="ac_img" src="../../../assets/images/edit.png" (click)="medit(machine.MachineID,machine.MachineName)"></ion-img>
                     <ion-img class="ac_img" src="../../../assets/images/delete.png" (click)="mdelete(machine.MachineID)"></ion-img>
-                </div>            
+                </div>
             </ion-col>
         </ion-row>
     </ion-grid>
 
-    <ion-grid class="container empty-list-box"  *ngIf="MachineList?.length == 0">
+    <ion-grid class="container empty-list-box" *ngIf="MachineList?.length == 0">
         <ion-row class="p-0">
             <ion-col size="12" class="p-0">
                 <ion-label class="empty-list">No Data Available!</ion-label>
             </ion-col>
         </ion-row>
-    </ion-grid> 
+    </ion-grid>
 </ion-content>

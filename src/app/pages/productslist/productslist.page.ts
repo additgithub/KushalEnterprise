@@ -1,3 +1,4 @@
+import { Platform } from '@ionic/angular';
 import { ApiService } from './../../services/api.service-new';
 import { Tools } from './../../shared/tools';
 import { Component } from '@angular/core';
@@ -28,7 +29,7 @@ export class ProductsListPage {
   MachinePdf='';
 
   constructor(public tools: Tools, private route: ActivatedRoute,private _nativeHttp: HTTP, private file: File,
-    public formBuilder: FormBuilder, private eventService: EventService,
+    public formBuilder: FormBuilder, private eventService: EventService,public  platform: Platform,
     private apiService: ApiService, private router: Router) {
 
     this.route.params
@@ -52,18 +53,42 @@ export class ProductsListPage {
  
 
   pdf(){
+
+    //for all platform
+    // this.file.checkDir(this.file.dataDirectory, 'mydir').then(_ => console.log('Directory exists')).catch(err =>
+    //   console.log('Directory doesn't exist'));
+
+    // this.platform.ready().then(() =>{
+		// 	if(this.platform.is('android')) {
+		// 		this.file.checkDir(this.file.externalRootDirectory, 'KushalEnterPrise').then(response => {
+		// 			console.log('Directory exists'+response);
+		// 		}).catch(err => {
+		// 			console.log('Directory doesn\'t exist'+JSON.stringify(err));
+		// 			this.file.createDir(this.file.externalRootDirectory, 'KushalEnterPrise', false).then(response => {
+		// 				console.log('Directory create'+response);
+		// 			}).catch(err => {
+		// 				console.log('Directory no create'+JSON.stringify(err));
+		// 			}); 
+		// 		});
+		// 	}
+		// });
+
     this.tools.openLoader();
+    //let targetPath = cordova.file.externalRootDirectory+ "download/"+moment().format("YYYYMMDDHHmmsss")+".pdf";
+
         const filePath = this.file.dataDirectory + 'KushalEnterPrise.pdf'; 
                          // for iOS use this.file.documentsDirectory
         
         this._nativeHttp.downloadFile(this.MachinePdf, {}, {}, filePath).then(response => {
            // prints 200
            this.tools.closeLoader();
+           this.tools.openNotification("success block...")
            console.log('success block...', response);
         }).catch(err => {
           this.tools.closeLoader();
-
             // prints 403
+            this.tools.openNotification("error block...")
+
             console.log('error block ... ', err.status);
             // prints Permission denied
             console.log('error block ... ', err.error);

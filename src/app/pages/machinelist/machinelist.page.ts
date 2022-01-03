@@ -58,8 +58,8 @@ export class MachineListPage {
     }
 
   }
-  medit() {
-
+  medit(MachineID,MachineName) {
+    this.router.navigateByUrl('editmachine/' + MachineID +'/'+MachineName);
   }
   mdelete(MachineID) {
     this.MachineID = MachineID;

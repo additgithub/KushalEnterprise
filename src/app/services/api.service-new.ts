@@ -249,6 +249,10 @@ export class ApiService {
     this.setHeaderData();
     return this.http.post(environment.BaseUrl + 'machine', Data, this.httpOptions);
   }
+  EditMachine(Data): any {
+    this.setHeaderData();
+    return this.http.post(environment.BaseUrl + 'machine/edit_machine', Data, this.httpOptions);
+  }
   EditSaveAgent(Data): any {
     this.setHeaderData();
     return this.http.post(environment.BaseUrl + 'agent/edit_agent', Data, this.httpOptions);
