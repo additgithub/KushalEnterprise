@@ -90,6 +90,10 @@ export class HomePage {
     this.menu.close();
     this.router.navigateByUrl("myinquiry");
   }
+  brochure() {
+    this.menu.close();
+    this.router.navigateByUrl("brochure");
+  }
 
   AddUser() {
     this.menu.close();

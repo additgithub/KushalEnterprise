@@ -26,16 +26,19 @@
                         <ion-input type="text" placeholder="Enter Machine Name" class="form-control" formControlName='mName'></ion-input>
                     </div>
                     <div class="form-group fileuploads">
-                        <ion-input type="file" (change)="onDocChange($event)" class="file_input" accept="application/pdf"></ion-input>
-                        <ion-label *ngIf="!pdf">Upload Machine PDF</ion-label>
-                        <ion-label *ngIf="pdf">Machine.pdf</ion-label>
+                        <ion-input type="file" (change)="onDocChange($event)" class="file_input" accept="application/pdf" multiple></ion-input>
+                        <ion-label *ngIf="pdfList?.length == 0">Upload Machine PDF</ion-label>
+                        <div class="file_name">
+                            <ion-label *ngFor="let pdf of pdfList">{{pdf.name}}</ion-label>
+                        </div>
                         <ion-img class="menu-img" src="../../../assets/images/upload.png"></ion-img>
                     </div>
 
                     <div class="form-group fileuploads">
-                        <input type="file" (change)="onFileChange($event)" class="file_input" accept="image/*">
+                        <!-- <input type="file" (change)="onFileChange($event)" class="file_input" accept="image/*"> -->
+                        <ion-input type="file" (change)="onFileChange($event)" class="file_input" accept="image/*"></ion-input>
                         <ion-label *ngIf="!image1">Upload Machine Image</ion-label>
-                        <ion-label *ngIf="image1">Machine.png</ion-label>
+                        <ion-label *ngIf="image1">{{imageName}}</ion-label>
                         <ion-img class="menu-img" src="../../../assets/images/upload.png"></ion-img>
                         <!-- <ion-img class="menu-img"  *ngIf="image1"
                             src="data:image/png;base64,{{image1}}"></ion-img> -->

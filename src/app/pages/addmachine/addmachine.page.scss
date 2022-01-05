@@ -1,3 +1,22 @@
 form {
-	padding: 10px 0px !important;
+    padding: 10px 0px !important;
+}
+
+.file_name ion-label {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.file_name {
+    display: block;
+    width: 100%;
+    padding-right: 5px;
+}
+
+.form-group.fileuploads ion-label {
+    width: 100%;
 }

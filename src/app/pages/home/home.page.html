@@ -50,6 +50,10 @@
                 <ion-img class="menu-img" src="../../../assets/images/CartWHite.png"></ion-img>
                 <ion-label class="lbl-style-m">Cart</ion-label>
             </ion-item>
+            <ion-item *ngIf="user.roleid==2" class="list-item" (click)="brochure()">
+                <ion-img class="menu-img" src="../../../assets/images/order.png"></ion-img>
+                <ion-label class="lbl-style-m">Brochure</ion-label>
+            </ion-item>
 
             <ion-item *ngIf="user.roleid==2" class="list-item" (click)="MyInquiry()">
                 <ion-img class="menu-img" src="../../../assets/images/order.png"></ion-img>

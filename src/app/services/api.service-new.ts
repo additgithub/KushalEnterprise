@@ -218,6 +218,10 @@ export class ApiService {
     this.setHeaderData();
     return this.http.post(environment.BaseUrl + 'inquiry/cart_checkout', Data, this.httpOptions);
   }
+  getMachinePdfList(Data): any {
+    this.setHeaderData();
+    return this.http.post(environment.BaseUrl + 'machine/machine_pdf', Data, this.httpOptions);
+  }
   AdminInqDetail(Data): any {
     this.setHeaderData();
     return this.http.post(environment.BaseUrl + 'dashboard', Data, this.httpOptions);

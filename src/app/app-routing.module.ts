@@ -35,6 +35,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/myinquiry/myinquiry.module').then(m => m.MyInquiryPageModule)
   },
   {
+    path: 'brochure',
+    loadChildren: () => import('./pages/brochure/brochure.module').then(m => m.BrochurePageModule)
+  },
+  {
     path: 'adduser',
     loadChildren: () => import('./pages/adduser/adduser.module').then(m => m.AddUserPageModule)
   },

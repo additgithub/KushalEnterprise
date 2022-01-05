@@ -16,7 +16,8 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 export class AddMachinePage {
   loginForm: FormGroup;
   image1: any;
-  pdf: any;
+  imageName: "";
+  pdfList:any= [];
 
   constructor(public tools: Tools, private activatedRoute: ActivatedRoute,
     public platform: Platform,
@@ -90,7 +91,7 @@ export class AddMachinePage {
       msg = msg + "Enter your Machine name<br />";
     }
    
-    if(this.pdf == undefined){
+    if(this.pdfList?.length == 0){
       msg = msg + "Select Machine PDF<br />";
 
     }
@@ -108,7 +109,12 @@ export class AddMachinePage {
   
             postData.append('MachineName', mName);
             postData.append('MachinePic', this.image1);
-            postData.append('SparePartsURL', this.pdf);
+            
+            for (let k = 0; k < this.pdfList.length; k++) {
+              const element = this.pdfList[k];              
+              postData.append('SparePartsURL[]', element);
+              postData.append('PdfName[]', element.name);
+            }
             
             this.tools.openLoader();
             this.apiService.AddMachine(postData).subscribe(response => {
@@ -144,6 +150,8 @@ export class AddMachinePage {
     if (event.target.files && event.target.files.length > 0) {
       
       const file = event.target.files[0];
+      this.imageName=file.name;
+
       const fileSizeInKB = Math.round(file.size / 1024);
       if (fileSizeInKB >= 5012) {
           //this.toastr.error("Allow only 5 mb image size", "Error");
@@ -168,21 +176,44 @@ export class AddMachinePage {
   isPostDocEdit = false;
   onDocChange(event, isEdit=false){
     if (event.target.files && event.target.files.length > 0) {
-      const files = event.target.files[0];
-      const fileSizeInKB = Math.round(files.size / 1024);
-      console.log("files >>"+files);
-      console.log("fileSizeInKB >>"+fileSizeInKB);
-      if (fileSizeInKB >= 10025) {
-          //this.toastr.error("Allow only 10 mb document size", "Error");
-          return;
+      // const files = event.target.files[0];
+      // const fileSizeInKB = Math.round(files.size / 1024);
+    //   console.log("files >>"+files.name);
+    //  this.PDFName=files.name;
+    //   console.log("fileSizeInKB >>"+fileSizeInKB);
+      const files = event.target.files as File[];
+      for (let i = 0; i < files.length; i++) {
+        console.log("files name>>"+files[i].name);
+        console.log("files >>"+files[i]);
+
+        if(this.pdfList?.length != 0){
+          for (let k = 0; k < this.pdfList.length; k++) {
+            const element = this.pdfList[k];  
+            console.log("element name >>"+element.name);  
+              
+            if(files[i].name == element.name){
+              break;
+            }else{
+              this.pdfList.push(files[i]);
+            }
+          }
+        }else{
+          this.pdfList.push(files[i]);
+        }
+      
+      
       }
+      // if (fileSizeInKB >= 10025) {
+      //     //this.toastr.error("Allow only 10 mb document size", "Error");
+      //     return;
+      // }
       if(isEdit){
         this.isPostDocEdit = true;
         //this.PEditControl.post_document.setValue(files);
       }else{
         this.isPostDocAdd = true;
         //this.control.post_document.setValue(files);
-        this.pdf=files;
+       // this.pdf=files;
       }
     }
   }
